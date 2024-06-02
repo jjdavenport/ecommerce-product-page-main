@@ -1,0 +1,29 @@
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+dialog {
+  border: none;
+}
+
+.main-img {
+  max-width: 100%;
+}
+
+@media screen and (width >= 40rem) {
+  nav {
+    display: flex;
+  }
+  .nav {
+    display: block;
+    position: relative;
+  }
+  #menu-button {
+    display: none;
+  }
+  #close-button {
+    display: none;
+  }
+}
