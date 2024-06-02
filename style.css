@@ -4,19 +4,51 @@ body {
   box-sizing: border-box;
 }
 
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+button {
+  background: none;
+  border: none;
+}
+
+.attribution a {
+  text-decoration: none;
+}
+
 dialog {
   border: none;
+}
+
+.nav-active {
+  position: fixed;
+  top: 0;
+  width: 60%;
+  height: 100vh;
+  display: block;
+  padding: 1rem;
+}
+
+.basket-active {
+  display: block;
 }
 
 .main-img {
   max-width: 100%;
 }
 
+.hidden {
+  display: none;
+}
+
 @media screen and (width >= 40rem) {
   nav {
     display: flex;
   }
-  .nav {
+  #nav {
     display: block;
     position: relative;
   }

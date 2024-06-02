@@ -35,9 +35,12 @@
           <img src="./images/icon-menu.svg" alt="Three horizontal lines" />
         </button>
         <img src="./images/logo.svg" alt="sneakers" />
-        <img src="./images/icon-cart.svg" alt="shopping cart" />
+        <button id="shopping-cart-button">
+          <img src="./images/icon-cart.svg" alt="shopping cart" />
+          <span id="shopping-cart-quantity"></span>
+        </button>
         <img src="./images/image-avatar.png" alt="profile picture" />
-        <dialog class="nav">
+        <dialog id="nav">
           <button id="close-button">
             <img src="./images/icon-close.svg" alt="x" />
           </button>
@@ -52,11 +55,41 @@
       </nav>
       <section>
         <button>
-          <img src="./images/icon-previous.svg" alt="left arrow" />
+          <img
+            id="left-arrow"
+            src="./images/icon-previous.svg"
+            alt="left arrow"
+          />
         </button>
-        <img class="main-img" src="./images/image-product-1.jpg" alt="" />
-        <button><img src="./images/icon-next.svg" alt="right arrow" /></button>
-        <dialog>
+        <button>
+          <img
+            class="main-img"
+            src="./images/image-product-1.jpg"
+            alt="white and beige sneakers"
+          />
+          <img src="./images/image-product-1.jpg" alt="" class="hidden" /><img
+            src=""
+            alt=""
+            class="hidden"
+          /><img src="./images/image-product-2.jpg" alt="" class="hidden" /><img
+            src=""
+            alt=""
+            class="hidden"
+          /><img src="./images/image-product-3.jpg" alt="" class="hidden" />
+          <img src="./images/image-product-4.jpg" alt="" class="hidden" /><img
+            src=""
+            alt=""
+            class="hidden"
+          />
+        </button>
+        <button>
+          <img
+            id="right-arrow"
+            src="./images/icon-next.svg"
+            alt="right arrow"
+          />
+        </button>
+        <dialog id="basket">
           <button>
             <img src="./images/icon-delete.svg" alt="rubbish bin / trash can" />
           </button>
@@ -72,11 +105,14 @@
       </p>
       <span>$125.00 50% $250.00</span>
       <section>
-        <button><img src="./images/icon-minus.svg" alt="minus symbol" /></button
-        ><span>0</span
-        ><button><img src="./images/icon-plus.svg" alt="plus symbol" /></button>
+        <button id="minus-button">
+          <img src="./images/icon-minus.svg" alt="minus symbol" /></button
+        ><span id="quantity">0</span
+        ><button id="plus-button">
+          <img src="./images/icon-plus.svg" alt="plus symbol" />
+        </button>
       </section>
-      <button>
+      <button id="add-to-cart-button">
         <img src="./images/icon-cart.svg" alt="shopping cart" />Add to cart
       </button>
     </main>
