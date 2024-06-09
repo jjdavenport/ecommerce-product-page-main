@@ -2,11 +2,10 @@ const menuBtn = document.getElementById("menu-button");
 const closeMenuBtn = document.getElementById("close-button");
 const plusBtn = document.getElementById("plus-button");
 const minusBtn = document.getElementById("minus-button");
-const addBtn = document.getElementById("add-to-cart-button");
+const addCartBtn = document.getElementById("add-to-cart-button");
 const shoppingCartBtn = document.getElementById("shopping-cart-button");
 const leftArrow = document.getElementById("left-arrow");
 const rightArrow = document.getElementById("right-arrow");
-let qnt = 0;
 
 menuBtn.addEventListener("click", () => {
   const mobileMenu = document.getElementById("nav");
@@ -25,9 +24,11 @@ closeMenuBtn.addEventListener("click", () => {
 
 window.addEventListener("resize", () => {
   const mobileMenu = document.getElementById("nav");
+  const removeOverlay = document.getElementById("overlay");
   const windowSize = window.innerWidth;
   if (windowSize >= 720) {
     mobileMenu.classList.remove("nav-active");
+    removeOverlay.remove();
   }
 });
 
@@ -43,27 +44,33 @@ minusBtn.addEventListener("click", () => {
   quantity.innerText = Math.max(0, defaultQuantity - 1);
 });
 
-addBtn.addEventListener("click", () => {
+addCartBtn.addEventListener("click", () => {
   const shoppingCartQnt = document.getElementById("shopping-cart-quantity");
   const quantity = document.getElementById("quantity");
-  let updateQnt = parseInt(shoppingCartQnt.innerText) || 0;
-  let addQnt = parseInt(quantity.innerText) || 0;
-  if (addQnt >= 1) {
-    updateQnt += addQnt;
-    shoppingCartQnt.innerText = updateQnt;
+  let addQnt = parseInt(shoppingCartQnt.innerText) || 0;
+  let qnt = parseInt(quantity.innerText) || 0;
+  if (qnt >= 1) {
+    addQnt += qnt;
+    shoppingCartQnt.innerText = addQnt;
+    deleteEmptyBasket();
   }
 });
 
 shoppingCartBtn.addEventListener("click", () => {
   const shoppingCartQnt = document.getElementById("shopping-cart-quantity");
-  const basket = document.querySelector(".basket");
   let addQnt = parseInt(shoppingCartQnt.innerText) || 0;
-  if (addQnt === 0) {
-    emptyBasket();
-    basket.classList.toggle("basket-active");
-  } else {
-    itemBasket();
-    basket.classList.toggle("basket-active");
+  const basket = document.getElementById("basket");
+  if (!basket) {
+    if (addQnt === 0) {
+      emptyBasket();
+    } else {
+      itemBasket(addQnt);
+      deleteItemBasket();
+    }
+  }
+  const newBasket = document.getElementById("basket");
+  if (newBasket) {
+    newBasket.classList.toggle("basket-active");
   }
 });
 
@@ -80,64 +87,53 @@ function emptyBasket() {
   empty.innerHTML = `<span>Cart</span>
   <span>Your cart is empty.</span>`;
   empty.id = "basket";
-  empty.className = "basket";
+  empty.className = "empty-basket";
   document.querySelector("main").appendChild(empty);
 }
 
-function itemBasket() {
-  const shoppingCartQnt = document.getElementById("shopping-cart-quantity");
-  const quantity = document.getElementById("quantity");
-  let addQnt = parseInt(shoppingCartQnt.innerText) || 0;
+function itemBasket(addQnt) {
   const price = 125.0;
   const totalPrice = price * addQnt;
   const item = document.createElement("dialog");
   item.innerHTML = `<span>Cart</span> 
   <div>
-  <div>
-  <img src="./images/image-product-1-thumbnail.jpg" alt="white and beige sneakers">
-  <span>Fall Limited Edition Sneakers</span>
-  <span>$125.00 X ${addQnt} ${totalPrice}</span> 
-  </div>
-  <button id="delete-button">
-  <img src="./images/icon-delete.svg" alt="rubbish bin / trash can" />
-  </button>
+    <div>
+      <img src="./images/image-product-1-thumbnail.jpg" alt="white and beige sneakers">
+      <span>Fall Limited Edition Sneakers</span>
+      <span>$125.00 X ${addQnt} ${totalPrice}</span> 
+    </div>
+    <button id="delete-button">
+      <img src="./images/icon-delete.svg" alt="rubbish bin / trash can" />
+    </button>
   </div>
   <button>Checkout</button>`;
   item.id = "basket";
-  item.className = "basket";
+  item.className = "item-basket";
   document.querySelector("main").appendChild(item);
+}
+
+function deleteItemBasket() {
   const deleteBtn = document.getElementById("delete-button");
   deleteBtn.addEventListener("click", () => {
-    item.classList.remove("basket-active");
-    shoppingCartQnt.innerText = "";
-    quantity.innerText = 0;
-    emptyBasket();
+    const itemBasket = document.getElementById("basket");
+    const shoppingCartQnt = document.getElementById("shopping-cart-quantity");
+    const quantity = document.getElementById("quantity");
+    if (itemBasket) {
+      itemBasket.remove();
+      shoppingCartQnt.innerText = "";
+      quantity.innerText = 0;
+      emptyBasket();
+      const newBasket = document.getElementById("basket");
+      if (newBasket) {
+        newBasket.classList.add("basket-active");
+      }
+    }
   });
 }
 
-function basketTotal() {
-  const shoppingCartQnt = document.getElementById("shopping-cart-quantity");
-  const totalQnt = parseInt(shoppingCartQnt.innerText) || 0;
-  const price = 125.0;
-  const totalPrice = price * qnt;
-  qnt = totalQnt;
-  if (qnt === 0) {
-    const emptyBasket = document.createElement("element");
-    emptyBasket.innerHTML = `<span>Cart</span>
-      <span>Your cart is empty.</span>`;
-  } else if (qnt >= 1) {
-    const itemBasket = document.createElement("dialog");
-    itemBasket.innerHTML = `<span>Cart</span> 
-      <div>
-      <div>
-      <img src="./images/image-product-1-thumbnail.jpg" alt="white and beige sneakers">
-      <span>Fall Limited Edition Sneakers</span>
-      <span>$125.00 X ${totalQnt} ${totalPrice}</span> 
-      </div>
-      <button id="delete-button">
-      <img src="./images/icon-delete.svg" alt="rubbish bin / trash can" />
-      </button>
-      </div>
-      <button>Checkout</button>`;
+function deleteEmptyBasket() {
+  const emptyBasket = document.querySelector(".empty-basket");
+  if (emptyBasket) {
+    emptyBasket.remove();
   }
 }
