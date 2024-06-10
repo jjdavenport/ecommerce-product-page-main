@@ -60,6 +60,10 @@ dialog {
   display: none;
 }
 
+#checkout-button {
+  background-color: red;
+}
+
 @media screen and (width >= 80rem) {
   nav {
     display: flex;

@@ -7,6 +7,16 @@ const shoppingCartBtn = document.getElementById("shopping-cart-button");
 const leftArrow = document.getElementById("left-arrow");
 const rightArrow = document.getElementById("right-arrow");
 
+function getCheckoutBtn() {
+  const checkoutBtn = document.getElementById("checkout-button");
+  if (checkoutBtn) {
+    checkoutBtn.addEventListener("click", () => {
+      const basket = document.getElementById("basket");
+      basket.classList.remove("basket-active");
+    });
+  }
+}
+
 menuBtn.addEventListener("click", () => {
   const mobileMenu = document.getElementById("nav");
   mobileMenu.classList.add("nav-active");
@@ -72,6 +82,7 @@ shoppingCartBtn.addEventListener("click", () => {
   const newBasket = document.getElementById("basket");
   if (newBasket) {
     newBasket.classList.toggle("basket-active");
+    getCheckoutBtn();
   }
 });
 
@@ -113,7 +124,7 @@ function itemBasket(addQnt) {
       <img src="./images/icon-delete.svg" alt="rubbish bin / trash can" />
     </button>
   </div>
-  <button>Checkout</button>`;
+  <button id="checkout-button">Checkout</button>`;
   deleteItemBasket();
 }
 
