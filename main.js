@@ -53,6 +53,7 @@ addCartBtn.addEventListener("click", () => {
     addQnt += qnt;
     shoppingCartQnt.innerText = addQnt;
     deleteEmptyBasket();
+    updateItemBasket(addQnt);
   }
 });
 
@@ -94,8 +95,14 @@ function emptyBasket() {
 function itemBasket(addQnt) {
   const price = 125.0;
   const totalPrice = price * addQnt;
-  const item = document.createElement("dialog");
-  item.innerHTML = `<span>Cart</span> 
+  let basket = document.getElementById("basket");
+  if (!basket) {
+    basket = document.createElement("dialog");
+    basket.id = "basket";
+    basket.className = "item-basket";
+    document.querySelector("main").appendChild(basket);
+  }
+  basket.innerHTML = `<span>Cart</span> 
   <div>
     <div>
       <img src="./images/image-product-1-thumbnail.jpg" alt="white and beige sneakers">
@@ -107,9 +114,11 @@ function itemBasket(addQnt) {
     </button>
   </div>
   <button>Checkout</button>`;
-  item.id = "basket";
-  item.className = "item-basket";
-  document.querySelector("main").appendChild(item);
+  deleteItemBasket();
+}
+
+function updateItemBasket(addQnt) {
+  itemBasket(addQnt);
 }
 
 function deleteItemBasket() {
