@@ -35,11 +35,6 @@
           <img src="./images/icon-menu.svg" alt="Three horizontal lines" />
         </button>
         <img src="./images/logo.svg" alt="sneakers" />
-        <button id="shopping-cart-button">
-          <img src="./images/icon-cart.svg" alt="shopping cart" />
-          <span id="shopping-cart-quantity"></span>
-        </button>
-        <img src="./images/image-avatar.png" alt="profile picture" />
         <dialog id="nav">
           <button id="close-button">
             <img src="./images/icon-close.svg" alt="x" />
@@ -52,16 +47,17 @@
             <a href="#">Contact</a>
           </ul>
         </dialog>
-      </nav>
-      <section>
-        <button>
-          <img
-            id="left-arrow"
-            src="./images/icon-previous.svg"
-            alt="left arrow"
-          />
+        <button id="shopping-cart-button">
+          <img src="./images/icon-cart.svg" alt="shopping cart" />
+          <span id="shopping-cart-quantity"></span>
         </button>
-        <button>
+        <img src="./images/image-avatar.png" alt="profile picture" />
+      </nav>
+      <section class="left">
+        <button id="left-button">
+          <img src="./images/icon-previous.svg" alt="left arrow" />
+        </button>
+        <button id="lightbox-button">
           <img
             class="main-img"
             src="./images/image-product-1.jpg"
@@ -72,33 +68,53 @@
           <img src="./images/image-product-3.jpg" alt="" class="hidden" />
           <img src="./images/image-product-4.jpg" alt="" class="hidden" />
         </button>
-        <button>
+        <button id="right-button">
+          <img src="./images/icon-next.svg" alt="right arrow" />
+        </button>
+        <div class="thumbnail-row">
           <img
-            id="right-arrow"
-            src="./images/icon-next.svg"
-            alt="right arrow"
+            src="./images/image-product-1-thumbnail.jpg"
+            alt=""
+            class="thumbnail"
           />
-        </button>
+          <img
+            src="./images/image-product-2-thumbnail.jpg"
+            alt=""
+            class="thumbnail"
+          />
+          <img
+            src="./images/image-product-3-thumbnail.jpg"
+            alt=""
+            class="thumbnail"
+          />
+          <img
+            src="./images/image-product-4-thumbnail.jpg"
+            alt=""
+            class="thumbnail"
+          />
+        </div>
       </section>
-      <span>Sneaker Company</span>
-      <h1>Fall Limited Edition Sneakers</h1>
-      <p>
-        These low-profile sneakers are your perfect casual wear companion.
-        Featuring a durable rubber outer sole, they’ll withstand everything the
-        weather can offer.
-      </p>
-      <span>$125.00 50% $250.00</span>
       <section>
-        <button id="minus-button">
-          <img src="./images/icon-minus.svg" alt="minus symbol" /></button
-        ><span id="quantity">0</span
-        ><button id="plus-button">
-          <img src="./images/icon-plus.svg" alt="plus symbol" />
+        <span>Sneaker Company</span>
+        <h1>Fall Limited Edition Sneakers</h1>
+        <p>
+          These low-profile sneakers are your perfect casual wear companion.
+          Featuring a durable rubber outer sole, they’ll withstand everything
+          the weather can offer.
+        </p>
+        <span>$125.00 50% $250.00</span>
+        <section class="right">
+          <button id="minus-button">
+            <img src="./images/icon-minus.svg" alt="minus symbol" /></button
+          ><span id="quantity">0</span
+          ><button id="plus-button">
+            <img src="./images/icon-plus.svg" alt="plus symbol" />
+          </button>
+        </section>
+        <button id="add-to-cart-button">
+          <img src="./images/icon-cart.svg" alt="shopping cart" />Add to cart
         </button>
       </section>
-      <button id="add-to-cart-button">
-        <img src="./images/icon-cart.svg" alt="shopping cart" />Add to cart
-      </button>
     </main>
     <footer class="attribution">
       Challenge by

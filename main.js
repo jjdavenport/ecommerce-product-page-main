@@ -4,8 +4,45 @@ const plusBtn = document.getElementById("plus-button");
 const minusBtn = document.getElementById("minus-button");
 const addCartBtn = document.getElementById("add-to-cart-button");
 const shoppingCartBtn = document.getElementById("shopping-cart-button");
-const leftArrow = document.getElementById("left-arrow");
-const rightArrow = document.getElementById("right-arrow");
+const leftArrow = document.getElementById("left-button");
+const rightArrow = document.getElementById("right-button");
+const lightboxBtn = document.getElementById("lightbox-button");
+
+lightboxBtn.addEventListener("click", () => {
+  if (window.innerWidth >= 720) {
+    const createOverlay = document.createElement("div");
+    createOverlay.id = "overlay";
+    document.body.appendChild(createOverlay);
+    const createDialog = document.createElement("dialog");
+    document.body.appendChild(createDialog);
+    createDialog.className = "lightbox-active";
+    createDialog.id = "lightbox";
+    createDialog.innerHTML = `<button id="lightbox-close-button">
+    <img src="./images/icon-close.svg" alt="Black cross" /></button>
+    <img
+    src="./images/image-product-1.jpg"
+    alt="white and beige sneakers"
+  />
+  <img src="./images/image-product-1.jpg" alt="" class="hidden" />
+  <img src="./images/image-product-2.jpg" alt="" class="hidden" />
+  <img src="./images/image-product-3.jpg" alt="" class="hidden" />
+  <img src="./images/image-product-4.jpg" alt="" class="hidden" />
+  `;
+    getLightboxCloseBtn();
+  }
+});
+
+function getLightboxCloseBtn() {
+  const lightboxCloseBtn = document.getElementById("lightbox-close-button");
+  if (lightboxCloseBtn) {
+    lightboxCloseBtn.addEventListener("click", () => {
+      const overlay = document.getElementById("overlay");
+      const lightbox = document.getElementById("lightbox");
+      lightbox.remove();
+      overlay.remove();
+    });
+  }
+}
 
 function getCheckoutBtn() {
   const checkoutBtn = document.getElementById("checkout-button");
@@ -35,10 +72,12 @@ closeMenuBtn.addEventListener("click", () => {
 window.addEventListener("resize", () => {
   const mobileMenu = document.getElementById("nav");
   const removeOverlay = document.getElementById("overlay");
+  const removeLightbox = document.getElementById("lightbox");
   const windowSize = window.innerWidth;
   if (windowSize >= 720) {
     mobileMenu.classList.remove("nav-active");
     removeOverlay.remove();
+    lightbox.remove();
   }
 });
 
