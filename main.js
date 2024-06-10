@@ -4,8 +4,6 @@ const plusBtn = document.getElementById("plus-button");
 const minusBtn = document.getElementById("minus-button");
 const addCartBtn = document.getElementById("add-to-cart-button");
 const shoppingCartBtn = document.getElementById("shopping-cart-button");
-const leftArrow = document.getElementById("left-button");
-const rightArrow = document.getElementById("right-button");
 const lightboxBtn = document.getElementById("lightbox-button");
 
 lightboxBtn.addEventListener("click", () => {
@@ -18,7 +16,10 @@ lightboxBtn.addEventListener("click", () => {
     createDialog.className = "lightbox-active";
     createDialog.id = "lightbox";
     createDialog.innerHTML = `<button id="lightbox-close-button">
-    <img src="./images/icon-close.svg" alt="Black cross" /></button>
+        <img src="./images/icon-close.svg" alt="Black cross" /></button>
+      <button id="left-button" class="desktop" alt="left arrow">
+          <img src="./images/icon-previous.svg" alt="left arrow" />
+        </button>
     <img
     src="./images/image-product-1.jpg"
     alt="white and beige sneakers"
@@ -27,8 +28,13 @@ lightboxBtn.addEventListener("click", () => {
   <img src="./images/image-product-2.jpg" alt="" class="hidden" />
   <img src="./images/image-product-3.jpg" alt="" class="hidden" />
   <img src="./images/image-product-4.jpg" alt="" class="hidden" />
+   <button id="right-button"  class="desktop">
+          <img src="./images/icon-next.svg"/>
+        </button>
   `;
     getLightboxCloseBtn();
+    leftButton();
+    rightButton();
   }
 });
 
@@ -74,10 +80,20 @@ window.addEventListener("resize", () => {
   const removeOverlay = document.getElementById("overlay");
   const removeLightbox = document.getElementById("lightbox");
   const windowSize = window.innerWidth;
+  const removeMobile = document.querySelectorAll(".mobile");
   if (windowSize >= 720) {
-    mobileMenu.classList.remove("nav-active");
-    removeOverlay.remove();
-    lightbox.remove();
+    if (mobileMenu) {
+      mobileMenu.classList.remove("nav-active");
+    }
+    if (removeOverlay) {
+      removeOverlay.remove();
+    }
+    if (removeLightbox) {
+      removeLightbox.remove();
+    }
+    removeMobile.forEach((m) => {
+      m.remove();
+    });
   }
 });
 
@@ -125,13 +141,23 @@ shoppingCartBtn.addEventListener("click", () => {
   }
 });
 
-leftArrow.addEventListener("click", () => {
-  console.log("clickL");
-});
+function leftButton() {
+  const leftBtn = document.getElementById("left-button");
+  if (leftBtn) {
+    leftBtn.addEventListener("click", () => {
+      console.log("clickL");
+    });
+  }
+}
 
-rightArrow.addEventListener("click", () => {
-  console.log("clickR");
-});
+function rightButton() {
+  const rightBtn = document.getElementById("right-button");
+  if (rightBtn) {
+    rightBtn.addEventListener("click", () => {
+      console.log("clickR");
+    });
+  }
+}
 
 function emptyBasket() {
   const empty = document.createElement("dialog");

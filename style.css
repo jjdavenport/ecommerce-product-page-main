@@ -89,8 +89,7 @@ dialog {
   #close-button {
     display: none;
   }
-  #left-button,
-  #right-button {
+  .mobile {
     display: none;
   }
   .left {
