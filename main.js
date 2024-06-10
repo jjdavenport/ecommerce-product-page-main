@@ -94,6 +94,10 @@ window.addEventListener("resize", () => {
     removeMobile.forEach((m) => {
       m.remove();
     });
+  } else {
+    removeMobile.forEach((m) => {
+      m.style.display = "block";
+    });
   }
 });
 
