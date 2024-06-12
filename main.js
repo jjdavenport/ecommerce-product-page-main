@@ -20,7 +20,7 @@ lightboxBtn.addEventListener("click", () => {
       <button id="left-button" class="desktop" alt="left arrow">
           <img src="./images/icon-previous.svg" alt="left arrow" />
         </button>
-    <img
+ <img
     src="./images/image-product-1.jpg"
     alt="white and beige sneakers"
   />
@@ -52,12 +52,11 @@ function getLightboxCloseBtn() {
 
 function getCheckoutBtn() {
   const checkoutBtn = document.getElementById("checkout-button");
-  if (checkoutBtn) {
+  if (checkoutBtn)
     checkoutBtn.addEventListener("click", () => {
       const basket = document.getElementById("basket");
       basket.classList.remove("basket-active");
     });
-  }
 }
 
 menuBtn.addEventListener("click", () => {
@@ -91,13 +90,25 @@ window.addEventListener("resize", () => {
     if (removeLightbox) {
       removeLightbox.remove();
     }
-    removeMobile.forEach((m) => {
-      m.remove();
+    removeMobile.forEach((b) => {
+      b.remove();
     });
   } else {
-    removeMobile.forEach((m) => {
-      m.style.display = "block";
-    });
+    const checkLeftBtn = document.getElementById("left-button");
+    const checkRightBtn = document.getElementById("right-button");
+    if (!checkLeftBtn && !checkRightBtn) {
+      const leftBtn = addBtn(
+        `left-button`,
+        `<img src="./images/icon-previous.svg" alt="left arrow" />`
+      );
+      const rightBtn = addBtn(
+        `right-button`,
+        `<img src="./images/icon-next.svg" alt="right arrow" />`
+      );
+      const left = document.querySelector(".left");
+      left.insertBefore(leftBtn, left.firstChild);
+      left.appendChild(rightBtn);
+    }
   }
 });
 
@@ -144,6 +155,14 @@ shoppingCartBtn.addEventListener("click", () => {
     getCheckoutBtn();
   }
 });
+
+function addBtn(id, html) {
+  const createBtn = document.createElement("button");
+  createBtn.id = id;
+  createBtn.innerHTML = html;
+  createBtn.className = "mobile";
+  return createBtn;
+}
 
 function leftButton() {
   const leftBtn = document.getElementById("left-button");
