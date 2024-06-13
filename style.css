@@ -60,6 +60,26 @@ dialog {
   display: none;
 }
 
+#left-button {
+  height: 5vh;
+  width: 5vh;
+  background-color: #fff;
+  border-radius: 50%;
+  position: fixed;
+  top: 50%;
+  left: 5%;
+}
+
+#right-button {
+  height: 5vh;
+  width: 5vh;
+  background-color: #fff;
+  border-radius: 50%;
+  position: fixed;
+  top: 50%;
+  left: 90%;
+}
+
 .thumbnail {
   display: none;
 }
@@ -84,6 +104,9 @@ dialog {
   }
   #close-button {
     display: none;
+  }
+  .main-img {
+    width: 50vw;
   }
   .mobile {
     display: none;

@@ -6,7 +6,9 @@ const addCartBtn = document.getElementById("add-to-cart-button");
 const shoppingCartBtn = document.getElementById("shopping-cart-button");
 const lightboxBtn = document.getElementById("lightbox-button");
 
-lightboxBtn.addEventListener("click", () => {
+lightboxBtn.addEventListener("click", lightboxClick);
+
+function lightboxClick() {
   if (window.innerWidth >= 720) {
     const createOverlay = document.createElement("div");
     createOverlay.id = "overlay";
@@ -16,27 +18,27 @@ lightboxBtn.addEventListener("click", () => {
     createDialog.className = "lightbox-active";
     createDialog.id = "lightbox";
     createDialog.innerHTML = `<button id="lightbox-close-button">
-        <img src="./images/icon-close.svg" alt="Black cross" /></button>
-      <button id="left-button" class="desktop" alt="left arrow">
-          <img src="./images/icon-previous.svg" alt="left arrow" />
-        </button>
- <img
-    src="./images/image-product-1.jpg"
-    alt="white and beige sneakers"
-  />
-  <img src="./images/image-product-1.jpg" alt="" class="hidden" />
-  <img src="./images/image-product-2.jpg" alt="" class="hidden" />
-  <img src="./images/image-product-3.jpg" alt="" class="hidden" />
-  <img src="./images/image-product-4.jpg" alt="" class="hidden" />
-   <button id="right-button"  class="desktop">
-          <img src="./images/icon-next.svg"/>
-        </button>
-  `;
+            <img src="./images/icon-close.svg" alt="Black cross" /></button>
+          <button id="left-button" class="desktop" alt="left arrow">
+              <img src="./images/icon-previous.svg" alt="left arrow" />
+            </button>
+     <img
+        src="./images/image-product-1.jpg"
+        alt="white and beige sneakers"
+      />
+      <img src="./images/image-product-1.jpg" alt="" class="hidden" />
+      <img src="./images/image-product-2.jpg" alt="" class="hidden" />
+      <img src="./images/image-product-3.jpg" alt="" class="hidden" />
+      <img src="./images/image-product-4.jpg" alt="" class="hidden" />
+       <button id="right-button"  class="desktop">
+              <img src="./images/icon-next.svg"/>
+            </button>
+      `;
     getLightboxCloseBtn();
     leftButton();
     rightButton();
   }
-});
+}
 
 function getLightboxCloseBtn() {
   const lightboxCloseBtn = document.getElementById("lightbox-close-button");
@@ -75,11 +77,70 @@ closeMenuBtn.addEventListener("click", () => {
 });
 
 window.addEventListener("resize", () => {
+  const left = document.querySelector(".left");
+  const lightboxBtn = document.getElementById("lightbox-button");
+  const mobileLightboxBtn = document.getElementById("lightbox-mobile");
+  const windowSize = window.innerWidth;
+
+  if (windowSize >= 720) {
+    if (mobileLightboxBtn) {
+      mobileLightboxBtn.remove();
+    }
+    if (!lightboxBtn) {
+      const addLightbox = addLightboxBtn();
+      left.insertBefore(addLightbox, left.firstChild);
+      addLightbox.addEventListener("click", lightboxClick);
+    }
+  } else {
+    if (lightboxBtn) {
+      lightboxBtn.remove();
+    }
+    if (!mobileLightboxBtn) {
+      const mobileLightbox = createMobileLightbox();
+      left.insertBefore(mobileLightbox, left.firstChild);
+    }
+  }
+});
+
+function addLightboxBtn() {
+  const createBtn = document.createElement("button");
+  createBtn.id = "lightbox-button";
+  createBtn.innerHTML = `  <img
+            class="main-img"
+            src="./images/image-product-1.jpg"
+            alt="white and beige sneakers"
+          />
+          <img src="./images/image-product-1.jpg" alt="" class="hidden" />
+          <img src="./images/image-product-2.jpg" alt="" class="hidden" />
+          <img src="./images/image-product-3.jpg" alt="" class="hidden" />
+          <img src="./images/image-product-4.jpg" alt="" class="hidden" />
+  `;
+  return createBtn;
+}
+
+function createMobileLightbox() {
+  const createDiv = document.createElement("div");
+  createDiv.id = "lightbox-mobile";
+  createDiv.innerHTML = `  <img
+            class="main-img"
+            src="./images/image-product-1.jpg"
+            alt="white and beige sneakers"
+          />
+          <img src="./images/image-product-1.jpg" alt="" class="hidden" />
+          <img src="./images/image-product-2.jpg" alt="" class="hidden" />
+          <img src="./images/image-product-3.jpg" alt="" class="hidden" />
+          <img src="./images/image-product-4.jpg" alt="" class="hidden" />
+  `;
+  return createDiv;
+}
+
+window.addEventListener("resize", () => {
   const mobileMenu = document.getElementById("nav");
   const removeOverlay = document.getElementById("overlay");
   const removeLightbox = document.getElementById("lightbox");
   const windowSize = window.innerWidth;
   const removeMobile = document.querySelectorAll(".mobile");
+  const left = document.querySelector(".left");
   if (windowSize >= 720) {
     if (mobileMenu) {
       mobileMenu.classList.remove("nav-active");
@@ -105,7 +166,6 @@ window.addEventListener("resize", () => {
         `right-button`,
         `<img src="./images/icon-next.svg" alt="right arrow" />`
       );
-      const left = document.querySelector(".left");
       left.insertBefore(leftBtn, left.firstChild);
       left.appendChild(rightBtn);
     }
