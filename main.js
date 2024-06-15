@@ -6,6 +6,14 @@ const addCartBtn = document.getElementById("add-to-cart-button");
 const shoppingCartBtn = document.getElementById("shopping-cart-button");
 const lightboxBtn = document.getElementById("lightbox-button");
 
+function lightbox(num) {
+  let img;
+  const imgs = document.querySelectorAll("");
+  if (num > imgs.length) {
+    imgIndex = 1;
+  }
+}
+
 lightboxBtn.addEventListener("click", lightboxClick);
 
 function lightboxClick() {
@@ -23,6 +31,7 @@ function lightboxClick() {
               <img src="./images/icon-previous.svg" alt="left arrow" />
             </button>
      <img
+        class="lightbox-img"
         src="./images/image-product-1.jpg"
         alt="white and beige sneakers"
       />
@@ -33,10 +42,39 @@ function lightboxClick() {
        <button id="right-button"  class="desktop">
               <img src="./images/icon-next.svg"/>
             </button>
+            <div class="thumbnail-row">
+          <button>
+            <img
+              src="./images/image-product-1-thumbnail.jpg"
+              alt=""
+              class="thumbnail"
+            />
+          </button>
+          <button>
+            <img
+              src="./images/image-product-2-thumbnail.jpg"
+              alt=""
+              class="thumbnail"
+            />
+          </button>
+          <button>
+            <img
+              src="./images/image-product-3-thumbnail.jpg"
+              alt=""
+              class="thumbnail"
+            />
+          </button>
+          <button>
+            <img
+              src="./images/image-product-4-thumbnail.jpg"
+              alt=""
+              class="thumbnail"
+            />
+          </button>
+        </div>
       `;
     getLightboxCloseBtn();
-    leftButton();
-    rightButton();
+    buttons();
   }
 }
 
@@ -77,6 +115,7 @@ closeMenuBtn.addEventListener("click", () => {
 });
 
 window.addEventListener("resize", () => {
+  const thumbnail = document.querySelector(".thumbnail-row");
   const left = document.querySelector(".left");
   const lightboxBtn = document.getElementById("lightbox-button");
   const mobileLightboxBtn = document.getElementById("lightbox-mobile");
@@ -91,6 +130,10 @@ window.addEventListener("resize", () => {
       left.insertBefore(addLightbox, left.firstChild);
       addLightbox.addEventListener("click", lightboxClick);
     }
+    if (!thumbnail) {
+      const addThumbnail = createThumbnail();
+      left.appendChild(addThumbnail);
+    }
   } else {
     if (lightboxBtn) {
       lightboxBtn.remove();
@@ -99,21 +142,59 @@ window.addEventListener("resize", () => {
       const mobileLightbox = createMobileLightbox();
       left.insertBefore(mobileLightbox, left.firstChild);
     }
+    if (thumbnail) {
+      thumbnail.remove();
+    }
   }
 });
+
+function createThumbnail() {
+  const createDiv = document.createElement("div");
+  createDiv.className = "thumbnail-row";
+  createDiv.innerHTML = `          <button>
+            <img
+              src="./images/image-product-1-thumbnail.jpg"
+              alt=""
+              class="thumbnail"
+            />
+          </button>
+          <button>
+            <img
+              src="./images/image-product-2-thumbnail.jpg"
+              alt=""
+              class="thumbnail"
+            />
+          </button>
+          <button>
+            <img
+              src="./images/image-product-3-thumbnail.jpg"
+              alt=""
+              class="thumbnail"
+            />
+          </button>
+          <button>
+            <img
+              src="./images/image-product-4-thumbnail.jpg"
+              alt=""
+              class="thumbnail"
+            />
+          </button>`;
+  return createDiv;
+}
 
 function addLightboxBtn() {
   const createBtn = document.createElement("button");
   createBtn.id = "lightbox-button";
-  createBtn.innerHTML = `  <img
+  createBtn.innerHTML = `<img
+            id="main-img"
             class="main-img"
             src="./images/image-product-1.jpg"
             alt="white and beige sneakers"
           />
-          <img src="./images/image-product-1.jpg" alt="" class="hidden" />
-          <img src="./images/image-product-2.jpg" alt="" class="hidden" />
-          <img src="./images/image-product-3.jpg" alt="" class="hidden" />
-          <img src="./images/image-product-4.jpg" alt="" class="hidden" />
+          <img src="./images/image-product-1.jpg" alt="" class="lightbox-img" />
+          <img src="./images/image-product-2.jpg" alt="" class="lightbox-img" />
+          <img src="./images/image-product-3.jpg" alt="" class="lightbox-img" />
+          <img src="./images/image-product-4.jpg" alt="" class="lightbox-img" />
   `;
   return createBtn;
 }
@@ -122,14 +203,15 @@ function createMobileLightbox() {
   const createDiv = document.createElement("div");
   createDiv.id = "lightbox-mobile";
   createDiv.innerHTML = `  <img
+            id="main-img"
             class="main-img"
             src="./images/image-product-1.jpg"
             alt="white and beige sneakers"
           />
-          <img src="./images/image-product-1.jpg" alt="" class="hidden" />
-          <img src="./images/image-product-2.jpg" alt="" class="hidden" />
-          <img src="./images/image-product-3.jpg" alt="" class="hidden" />
-          <img src="./images/image-product-4.jpg" alt="" class="hidden" />
+          <img src="./images/image-product-1.jpg" alt="" class="lightbox-img" />
+          <img src="./images/image-product-2.jpg" alt="" class="lightbox-img" />
+          <img src="./images/image-product-3.jpg" alt="" class="lightbox-img" />
+          <img src="./images/image-product-4.jpg" alt="" class="lightbox-img" />
   `;
   return createDiv;
 }
@@ -222,24 +304,6 @@ function addBtn(id, html) {
   createBtn.innerHTML = html;
   createBtn.className = "mobile";
   return createBtn;
-}
-
-function leftButton() {
-  const leftBtn = document.getElementById("left-button");
-  if (leftBtn) {
-    leftBtn.addEventListener("click", () => {
-      console.log("clickL");
-    });
-  }
-}
-
-function rightButton() {
-  const rightBtn = document.getElementById("right-button");
-  if (rightBtn) {
-    rightBtn.addEventListener("click", () => {
-      console.log("clickR");
-    });
-  }
 }
 
 function emptyBasket() {
