@@ -4,101 +4,8 @@ const plusBtn = document.getElementById("plus-button");
 const minusBtn = document.getElementById("minus-button");
 const addCartBtn = document.getElementById("add-to-cart-button");
 const shoppingCartBtn = document.getElementById("shopping-cart-button");
-const lightboxBtn = document.getElementById("lightbox-button");
-let mainImg = document.getElementById("main-img");
-let currentIndex = 0;
 
-document.addEventListener("DOMContentLoaded", windowCheck);
-
-window.addEventListener("resize", windowCheck);
-
-const images = [
-  "./images/image-product-1.jpg",
-  "./images/image-product-2.jpg",
-  "./images/image-product-3.jpg",
-  "./images/image-product-4.jpg",
-];
-
-function leftClick() {
-  currentIndex = currentIndex === 0 ? images.length - 1 : currentIndex - 1;
-  getMainImg();
-  console.log("clickl");
-}
-
-function rightClick() {
-  currentIndex = currentIndex === images.length - 1 ? 0 : currentIndex + 1;
-  getMainImg();
-  console.log("clickr");
-}
-
-function getMainImg() {
-  mainImg.src = images[currentIndex];
-}
-
-lightboxBtn.addEventListener("click", lightboxClick);
-
-function lightboxClick() {
-  if (window.innerWidth >= 720) {
-    const createOverlay = document.createElement("div");
-    createOverlay.id = "overlay";
-    document.body.appendChild(createOverlay);
-    const createDialog = document.createElement("dialog");
-    document.body.appendChild(createDialog);
-    createDialog.className = "lightbox-active";
-    createDialog.id = "lightbox";
-    createDialog.innerHTML = `<button id="lightbox-close-button">
-            <img src="./images/icon-close.svg" alt="Black cross" /></button>
-          <button id="left-button" class="desktop" alt="left arrow" onclick="leftClick()">
-              <img src="./images/icon-previous.svg" alt="left arrow" />
-            </button>
-      <img
-            id="lightbox-main-img"
-            class="main-img"
-            src="./images/image-product-1.jpg"
-            alt="white and beige sneakers"
-          />
-          <img src="./images/image-product-1.jpg" alt="" class="lightbox-img" />
-          <img src="./images/image-product-2.jpg" alt="" class="lightbox-img" />
-          <img src="./images/image-product-3.jpg" alt="" class="lightbox-img" />
-          <img src="./images/image-product-4.jpg" alt="" class="lightbox-img" />
-       <button id="right-button"  class="desktop" onclick="rightClick()">
-              <img src="./images/icon-next.svg"/>
-            </button>
-            <div class="thumbnail-row">
-          <button>
-            <img
-              src="./images/image-product-1-thumbnail.jpg"
-              alt=""
-              class="thumbnail"
-            />
-          </button>
-          <button>
-            <img
-              src="./images/image-product-2-thumbnail.jpg"
-              alt=""
-              class="thumbnail"
-            />
-          </button>
-          <button>
-            <img
-              src="./images/image-product-3-thumbnail.jpg"
-              alt=""
-              class="thumbnail"
-            />
-          </button>
-          <button>
-            <img
-              src="./images/image-product-4-thumbnail.jpg"
-              alt=""
-              class="thumbnail"
-            />
-          </button>
-        </div>
-      `;
-    mainImg = document.getElementById("lightbox-main-img");
-    getLightboxCloseBtn();
-  }
-}
+// remove mobile button when page expands to desktop
 
 function getLightboxCloseBtn() {
   const lightboxCloseBtn = document.getElementById("lightbox-close-button");
@@ -114,11 +21,12 @@ function getLightboxCloseBtn() {
 
 function getCheckoutBtn() {
   const checkoutBtn = document.getElementById("checkout-button");
-  if (checkoutBtn)
+  if (checkoutBtn) {
     checkoutBtn.addEventListener("click", () => {
       const basket = document.getElementById("basket");
       basket.classList.remove("basket-active");
     });
+  }
 }
 
 menuBtn.addEventListener("click", () => {
@@ -136,142 +44,16 @@ closeMenuBtn.addEventListener("click", () => {
   removeOverlay.remove();
 });
 
-function windowCheck() {
-  const thumbnail = document.querySelector(".thumbnail-row");
-  const left = document.querySelector(".left");
-  const lightboxBtn = document.getElementById("lightbox-button");
-  const mobileLightboxBtn = document.getElementById("lightbox-mobile");
-  const windowSize = window.innerWidth;
-
-  if (windowSize >= 720) {
-    if (mobileLightboxBtn) {
-      mobileLightboxBtn.remove();
-    }
-    if (!lightboxBtn) {
-      const addLightbox = addLightboxBtn();
-      left.insertBefore(addLightbox, left.firstChild);
-      addLightbox.addEventListener("click", lightboxClick);
-    }
-    if (!thumbnail) {
-      const addThumbnail = createThumbnail();
-      left.appendChild(addThumbnail);
-    }
-  } else {
-    if (lightboxBtn) {
-      lightboxBtn.remove();
-    }
-    if (!mobileLightboxBtn) {
-      const mobileLightbox = createMobileLightbox();
-      left.insertBefore(mobileLightbox, left.firstChild);
-    }
-    if (thumbnail) {
-      thumbnail.remove();
-    }
-  }
-}
-
-function createThumbnail() {
-  const createDiv = document.createElement("div");
-  createDiv.className = "thumbnail-row";
-  createDiv.innerHTML = `          <button>
-            <img
-              src="./images/image-product-1-thumbnail.jpg"
-              alt=""
-              class="thumbnail"
-            />
-          </button>
-          <button>
-            <img
-              src="./images/image-product-2-thumbnail.jpg"
-              alt=""
-              class="thumbnail"
-            />
-          </button>
-          <button>
-            <img
-              src="./images/image-product-3-thumbnail.jpg"
-              alt=""
-              class="thumbnail"
-            />
-          </button>
-          <button>
-            <img
-              src="./images/image-product-4-thumbnail.jpg"
-              alt=""
-              class="thumbnail"
-            />
-          </button>`;
-  return createDiv;
-}
-
-function addLightboxBtn() {
-  const createBtn = document.createElement("button");
-  createBtn.id = "lightbox-button";
-  createBtn.innerHTML = `<img
-            id="main-img"
-            class="main-img"
-            src="./images/image-product-1.jpg"
-            alt="white and beige sneakers"
-          />
-          <img src="./images/image-product-1.jpg" alt="" class="lightbox-img" />
-          <img src="./images/image-product-2.jpg" alt="" class="lightbox-img" />
-          <img src="./images/image-product-3.jpg" alt="" class="lightbox-img" />
-          <img src="./images/image-product-4.jpg" alt="" class="lightbox-img" />
-  `;
-  return createBtn;
-}
-
-function createMobileLightbox() {
-  const createDiv = document.createElement("div");
-  createDiv.id = "lightbox-mobile";
-  createDiv.innerHTML = `<img
-            id="main-img"
-            class="main-img"
-            src="./images/image-product-1.jpg"
-            alt="white and beige sneakers"
-          />
-          <img src="./images/image-product-1.jpg" alt="" class="lightbox-img" />
-          <img src="./images/image-product-2.jpg" alt="" class="lightbox-img" />
-          <img src="./images/image-product-3.jpg" alt="" class="lightbox-img" />
-          <img src="./images/image-product-4.jpg" alt="" class="lightbox-img" />
-  `;
-  return createDiv;
-}
-
 window.addEventListener("resize", () => {
   const mobileMenu = document.getElementById("nav");
   const removeOverlay = document.getElementById("overlay");
-  const removeLightbox = document.getElementById("lightbox");
   const windowSize = window.innerWidth;
-  const removeMobile = document.querySelectorAll(".mobile");
-  const left = document.querySelector(".left");
   if (windowSize >= 720) {
     if (mobileMenu) {
       mobileMenu.classList.remove("nav-active");
     }
     if (removeOverlay) {
       removeOverlay.remove();
-    }
-    if (removeLightbox) {
-      removeLightbox.remove();
-    }
-    removeMobile.forEach((b) => {
-      b.remove();
-    });
-  } else {
-    const checkLeftBtn = document.getElementById("left-button");
-    const checkRightBtn = document.getElementById("right-button");
-    if (!checkLeftBtn && !checkRightBtn) {
-      const leftBtn = addBtn(
-        `left-button`,
-        `<img src="./images/icon-previous.svg" alt="left arrow" />`
-      );
-      const rightBtn = addBtn(
-        `right-button`,
-        `<img src="./images/icon-next.svg" alt="right arrow" />`
-      );
-      left.insertBefore(leftBtn, left.firstChild);
-      left.appendChild(rightBtn);
     }
   }
 });
@@ -320,12 +102,22 @@ shoppingCartBtn.addEventListener("click", () => {
   }
 });
 
-function addBtn(id, html) {
-  const createBtn = document.createElement("button");
-  createBtn.id = id;
-  createBtn.innerHTML = html;
-  createBtn.className = "mobile";
-  return createBtn;
+function leftButton() {
+  const leftBtn = document.getElementById("left-button");
+  if (leftBtn) {
+    leftBtn.addEventListener("click", () => {
+      console.log("clickL");
+    });
+  }
+}
+
+function rightButton() {
+  const rightBtn = document.getElementById("right-button");
+  if (rightBtn) {
+    rightBtn.addEventListener("click", () => {
+      console.log("clickR");
+    });
+  }
 }
 
 function emptyBasket() {
