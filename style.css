@@ -1,7 +1,10 @@
 body {
+  display: grid;
+  grid-template-rows: 1fr auto;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  height: 100vh;
 }
 
 * {
@@ -13,6 +16,20 @@ body {
 button {
   background: none;
   border: none;
+}
+
+#menu-button:hover {
+  cursor: pointer;
+}
+
+#shopping-cart-button:hover {
+  cursor: pointer;
+}
+
+.profile-picture:hover {
+  cursor: pointer;
+  outline: 2px solid black;
+  border-radius: 50%;
 }
 
 .attribution a {
@@ -78,7 +95,21 @@ dialog {
   border-radius: 50%;
   position: fixed;
   top: 50%;
-  left: 90%;
+  left: 70%;
+}
+
+#left-button:hover,
+#right-button:hover {
+  cursor: pointer;
+}
+
+#minus-button:hover,
+#plus-button:hover {
+  cursor: pointer;
+}
+
+#add-to-cart-button:hover {
+  cursor: pointer;
 }
 
 .thumbnail {
@@ -117,8 +148,14 @@ dialog {
   #close-button {
     display: none;
   }
-  #main-img {
+  #lightbox-main-img {
     width: 40vw;
+  }
+  #lightbox-close-button {
+    cursor: pointer;
+  }
+  #main-img:hover {
+    cursor: pointer;
   }
   .mobile {
     display: none;
@@ -136,6 +173,10 @@ dialog {
   }
   .thumbnail {
     height: 2.5rem;
+  }
+  .thumbnail:hover {
+    cursor: pointer;
+    outline: 0.125rem solid black;
   }
   .lightbox-active {
     display: flex;

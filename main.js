@@ -5,10 +5,12 @@ const minusBtn = document.getElementById("minus-button");
 const addCartBtn = document.getElementById("add-to-cart-button");
 const shoppingCartBtn = document.getElementById("shopping-cart-button");
 const lightboxBtn = document.getElementById("lightbox-button");
-const mainImg = document.getElementById("main-img");
-const leftButton = document.getElementById("left-button");
-const rightButton = document.getElementById("right-button");
+let mainImg = document.getElementById("main-img");
 let currentIndex = 0;
+
+document.addEventListener("DOMContentLoaded", windowCheck);
+
+window.addEventListener("resize", windowCheck);
 
 const images = [
   "./images/image-product-1.jpg",
@@ -17,17 +19,21 @@ const images = [
   "./images/image-product-4.jpg",
 ];
 
-leftButton.addEventListener("click", () => {
+function leftClick() {
   currentIndex = currentIndex === 0 ? images.length - 1 : currentIndex - 1;
-  mainImg.src = images[currentIndex];
-  console.log("click");
-});
+  getMainImg();
+  console.log("clickl");
+}
 
-rightButton.addEventListener("click", () => {
+function rightClick() {
   currentIndex = currentIndex === images.length - 1 ? 0 : currentIndex + 1;
+  getMainImg();
+  console.log("clickr");
+}
+
+function getMainImg() {
   mainImg.src = images[currentIndex];
-  console.log("click");
-});
+}
 
 lightboxBtn.addEventListener("click", lightboxClick);
 
@@ -42,11 +48,11 @@ function lightboxClick() {
     createDialog.id = "lightbox";
     createDialog.innerHTML = `<button id="lightbox-close-button">
             <img src="./images/icon-close.svg" alt="Black cross" /></button>
-          <button id="left-button" class="desktop" alt="left arrow">
+          <button id="left-button" class="desktop" alt="left arrow" onclick="leftClick()">
               <img src="./images/icon-previous.svg" alt="left arrow" />
             </button>
       <img
-            id="main-img"
+            id="lightbox-main-img"
             class="main-img"
             src="./images/image-product-1.jpg"
             alt="white and beige sneakers"
@@ -55,7 +61,7 @@ function lightboxClick() {
           <img src="./images/image-product-2.jpg" alt="" class="lightbox-img" />
           <img src="./images/image-product-3.jpg" alt="" class="lightbox-img" />
           <img src="./images/image-product-4.jpg" alt="" class="lightbox-img" />
-       <button id="right-button"  class="desktop">
+       <button id="right-button"  class="desktop" onclick="rightClick()">
               <img src="./images/icon-next.svg"/>
             </button>
             <div class="thumbnail-row">
@@ -89,6 +95,7 @@ function lightboxClick() {
           </button>
         </div>
       `;
+    mainImg = document.getElementById("lightbox-main-img");
     getLightboxCloseBtn();
   }
 }
@@ -129,7 +136,7 @@ closeMenuBtn.addEventListener("click", () => {
   removeOverlay.remove();
 });
 
-window.addEventListener("resize", () => {
+function windowCheck() {
   const thumbnail = document.querySelector(".thumbnail-row");
   const left = document.querySelector(".left");
   const lightboxBtn = document.getElementById("lightbox-button");
@@ -161,7 +168,7 @@ window.addEventListener("resize", () => {
       thumbnail.remove();
     }
   }
-});
+}
 
 function createThumbnail() {
   const createDiv = document.createElement("div");
@@ -217,7 +224,7 @@ function addLightboxBtn() {
 function createMobileLightbox() {
   const createDiv = document.createElement("div");
   createDiv.id = "lightbox-mobile";
-  createDiv.innerHTML = `  <img
+  createDiv.innerHTML = `<img
             id="main-img"
             class="main-img"
             src="./images/image-product-1.jpg"

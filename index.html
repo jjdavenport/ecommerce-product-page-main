@@ -51,10 +51,14 @@
           <img src="./images/icon-cart.svg" alt="shopping cart" />
           <span id="shopping-cart-quantity"></span>
         </button>
-        <img src="./images/image-avatar.png" alt="profile picture" />
+        <img
+          src="./images/image-avatar.png"
+          alt="profile picture"
+          class="profile-picture"
+        />
       </nav>
       <section class="left">
-        <button id="left-button" class="mobile">
+        <button id="left-button" class="mobile" onclick="leftClick()">
           <img src="./images/icon-previous.svg" alt="left arrow" />
         </button>
         <button id="lightbox-button">
@@ -69,7 +73,7 @@
           <img src="./images/image-product-3.jpg" alt="" class="lightbox-img" />
           <img src="./images/image-product-4.jpg" alt="" class="lightbox-img" />
         </button>
-        <button id="right-button" class="mobile">
+        <button id="right-button" class="mobile" onclick="rightClick()">
           <img src="./images/icon-next.svg" alt="right arrow" />
         </button>
         <div id="thumbnail-row" class="thumbnail-row">
