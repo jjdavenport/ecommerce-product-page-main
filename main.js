@@ -5,14 +5,29 @@ const minusBtn = document.getElementById("minus-button");
 const addCartBtn = document.getElementById("add-to-cart-button");
 const shoppingCartBtn = document.getElementById("shopping-cart-button");
 const lightboxBtn = document.getElementById("lightbox-button");
+const mainImg = document.getElementById("main-img");
+const leftButton = document.getElementById("left-button");
+const rightButton = document.getElementById("right-button");
+let currentIndex = 0;
 
-function lightbox(num) {
-  let img;
-  const imgs = document.querySelectorAll("");
-  if (num > imgs.length) {
-    imgIndex = 1;
-  }
-}
+const images = [
+  "./images/image-product-1.jpg",
+  "./images/image-product-2.jpg",
+  "./images/image-product-3.jpg",
+  "./images/image-product-4.jpg",
+];
+
+leftButton.addEventListener("click", () => {
+  currentIndex = currentIndex === 0 ? images.length - 1 : currentIndex - 1;
+  mainImg.src = images[currentIndex];
+  console.log("click");
+});
+
+rightButton.addEventListener("click", () => {
+  currentIndex = currentIndex === images.length - 1 ? 0 : currentIndex + 1;
+  mainImg.src = images[currentIndex];
+  console.log("click");
+});
 
 lightboxBtn.addEventListener("click", lightboxClick);
 
@@ -30,15 +45,16 @@ function lightboxClick() {
           <button id="left-button" class="desktop" alt="left arrow">
               <img src="./images/icon-previous.svg" alt="left arrow" />
             </button>
-     <img
-        class="lightbox-img"
-        src="./images/image-product-1.jpg"
-        alt="white and beige sneakers"
-      />
-      <img src="./images/image-product-1.jpg" alt="" class="hidden" />
-      <img src="./images/image-product-2.jpg" alt="" class="hidden" />
-      <img src="./images/image-product-3.jpg" alt="" class="hidden" />
-      <img src="./images/image-product-4.jpg" alt="" class="hidden" />
+      <img
+            id="main-img"
+            class="main-img"
+            src="./images/image-product-1.jpg"
+            alt="white and beige sneakers"
+          />
+          <img src="./images/image-product-1.jpg" alt="" class="lightbox-img" />
+          <img src="./images/image-product-2.jpg" alt="" class="lightbox-img" />
+          <img src="./images/image-product-3.jpg" alt="" class="lightbox-img" />
+          <img src="./images/image-product-4.jpg" alt="" class="lightbox-img" />
        <button id="right-button"  class="desktop">
               <img src="./images/icon-next.svg"/>
             </button>
@@ -74,7 +90,6 @@ function lightboxClick() {
         </div>
       `;
     getLightboxCloseBtn();
-    buttons();
   }
 }
 

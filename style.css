@@ -68,7 +68,7 @@ dialog {
   border-radius: 50%;
   position: fixed;
   top: 50%;
-  left: 5%;
+  left: 25%;
 }
 
 #right-button {
@@ -118,7 +118,7 @@ dialog {
     display: none;
   }
   #main-img {
-    width: 10vw;
+    width: 40vw;
   }
   .mobile {
     display: none;
