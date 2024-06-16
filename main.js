@@ -37,7 +37,7 @@ function mobileNav() {
       <img src="./images/icon-menu.svg" alt="Three horizontal lines" />
     </button>
     <img src="./images/logo.svg" alt="sneakers" />
-    <dialog id="nav-dialog">
+    <dialog id="nav">
       <button id="close-button">
         <img src="./images/icon-close.svg" alt="x" />
       </button>
@@ -132,6 +132,70 @@ function desktopLightbox() {
   return createSection;
 }
 
+function itemBasket(addQnt) {
+  const price = 125.0;
+  const totalPrice = price * addQnt;
+  let basket = document.getElementById("basket");
+  if (!basket) {
+    basket = document.createElement("dialog");
+    basket.id = "basket";
+    basket.className = "item-basket";
+    document.querySelector("main").appendChild(basket);
+  }
+  basket.innerHTML = `<span>Cart</span> 
+  <div>
+    <div>
+      <img src="./images/image-product-1-thumbnail.jpg" alt="white and beige sneakers">
+      <span>Fall Limited Edition Sneakers</span>
+      <span>$125.00 X ${addQnt} ${totalPrice}</span> 
+    </div>
+    <button id="delete-button">
+      <img src="./images/icon-delete.svg" alt="rubbish bin / trash can" />
+    </button>
+  </div>
+  <button id="checkout-button">Checkout</button>`;
+  deleteItemBasket();
+}
+
+function updateItemBasket(addQnt) {
+  itemBasket(addQnt);
+}
+
+function emptyBasket() {
+  const empty = document.createElement("dialog");
+  empty.innerHTML = `<span>Cart</span>
+  <span>Your cart is empty.</span>`;
+  empty.id = "basket";
+  empty.className = "empty-basket";
+  document.querySelector("main").appendChild(empty);
+}
+
+function deleteItemBasket() {
+  const deleteBtn = document.getElementById("delete-button");
+  deleteBtn.addEventListener("click", () => {
+    const itemBasket = document.getElementById("basket");
+    const shoppingCartQnt = document.getElementById("shopping-cart-quantity");
+    const quantity = document.getElementById("quantity");
+    if (itemBasket) {
+      itemBasket.remove();
+      shoppingCartQnt.innerText = "";
+      quantity.innerText = 0;
+      emptyBasket();
+      const newBasket = document.getElementById("basket");
+      if (newBasket) {
+        newBasket.classList.add("basket-active");
+      }
+    }
+  });
+}
+
+function deleteEmptyBasket() {
+  const emptyBasket = document.querySelector(".empty-basket");
+  if (emptyBasket) {
+    emptyBasket.remove();
+  }
+}
+
 function mobileDesktop() {
   const windowSize = window.innerWidth;
   const main = document.querySelector("main");
@@ -178,42 +242,31 @@ function mobileDesktop() {
 window.addEventListener("resize", mobileDesktop);
 window.addEventListener("DOMContentLoaded", mobileDesktop);
 
-function getLightboxCloseBtn() {
-  const lightboxCloseBtn = document.getElementById("lightbox-close-button");
-  if (lightboxCloseBtn) {
-    lightboxCloseBtn.addEventListener("click", () => {
-      const overlay = document.getElementById("overlay");
-      const lightbox = document.getElementById("lightbox");
-      lightbox.remove();
-      overlay.remove();
-    });
+function menuClick() {
+  const mobileMenu = document.getElementById("nav");
+  if (mobileMenu) {
+    mobileMenu.classList.add("nav-active");
+  }
+
+  let overlay = document.getElementById("overlay");
+  if (!overlay) {
+    overlay = document.createElement("div");
+    overlay.id = "overlay";
+    document.body.appendChild(overlay);
   }
 }
 
-function getCheckoutBtn() {
-  const checkoutBtn = document.getElementById("checkout-button");
-  if (checkoutBtn) {
-    checkoutBtn.addEventListener("click", () => {
-      const basket = document.getElementById("basket");
-      basket.classList.remove("basket-active");
-    });
+function closeMenuClick() {
+  const mobileMenu = document.getElementById("nav");
+  if (mobileMenu) {
+    mobileMenu.classList.remove("nav-active");
+  }
+
+  const overlay = document.getElementById("overlay");
+  if (overlay) {
+    overlay.remove();
   }
 }
-
-menuBtn.addEventListener("click", () => {
-  const mobileMenu = document.getElementById("nav");
-  mobileMenu.classList.add("nav-active");
-  const createOverlay = document.createElement("div");
-  createOverlay.id = "overlay";
-  document.body.appendChild(createOverlay);
-});
-
-closeMenuBtn.addEventListener("click", () => {
-  const mobileMenu = document.getElementById("nav");
-  mobileMenu.classList.remove("nav-active");
-  const removeOverlay = document.getElementById("overlay");
-  removeOverlay.remove();
-});
 
 window.addEventListener("resize", () => {
   const mobileMenu = document.getElementById("nav");
@@ -254,7 +307,23 @@ addCartBtn.addEventListener("click", () => {
   }
 });
 
-shoppingCartBtn.addEventListener("click", () => {
+document.addEventListener("click", (e) => {
+  const target = e.target;
+  if (
+    target.id === "shopping-cart-button" ||
+    target.closest("#shopping-cart-button")
+  ) {
+    shoppingCartClick();
+  }
+  if (target.id === "menu-button" || target.closest("#menu-button")) {
+    menuClick();
+  }
+  if (target.id === "close-button" || target.closest("#close-button")) {
+    closeMenuClick();
+  }
+});
+
+function shoppingCartClick() {
   const shoppingCartQnt = document.getElementById("shopping-cart-quantity");
   let addQnt = parseInt(shoppingCartQnt.innerText) || 0;
   const basket = document.getElementById("basket");
@@ -271,8 +340,7 @@ shoppingCartBtn.addEventListener("click", () => {
     newBasket.classList.toggle("basket-active");
     getCheckoutBtn();
   }
-});
-
+}
 function leftButton() {
   const leftBtn = document.getElementById("left-button");
   if (leftBtn) {
@@ -291,66 +359,11 @@ function rightButton() {
   }
 }
 
-function emptyBasket() {
-  const empty = document.createElement("dialog");
-  empty.innerHTML = `<span>Cart</span>
-  <span>Your cart is empty.</span>`;
-  empty.id = "basket";
-  empty.className = "empty-basket";
-  document.querySelector("main").appendChild(empty);
-}
-
-function itemBasket(addQnt) {
-  const price = 125.0;
-  const totalPrice = price * addQnt;
-  let basket = document.getElementById("basket");
-  if (!basket) {
-    basket = document.createElement("dialog");
-    basket.id = "basket";
-    basket.className = "item-basket";
-    document.querySelector("main").appendChild(basket);
-  }
-  basket.innerHTML = `<span>Cart</span> 
-  <div>
-    <div>
-      <img src="./images/image-product-1-thumbnail.jpg" alt="white and beige sneakers">
-      <span>Fall Limited Edition Sneakers</span>
-      <span>$125.00 X ${addQnt} ${totalPrice}</span> 
-    </div>
-    <button id="delete-button">
-      <img src="./images/icon-delete.svg" alt="rubbish bin / trash can" />
-    </button>
-  </div>
-  <button id="checkout-button">Checkout</button>`;
-  deleteItemBasket();
-}
-
-function updateItemBasket(addQnt) {
-  itemBasket(addQnt);
-}
-
-function deleteItemBasket() {
-  const deleteBtn = document.getElementById("delete-button");
-  deleteBtn.addEventListener("click", () => {
-    const itemBasket = document.getElementById("basket");
-    const shoppingCartQnt = document.getElementById("shopping-cart-quantity");
-    const quantity = document.getElementById("quantity");
-    if (itemBasket) {
-      itemBasket.remove();
-      shoppingCartQnt.innerText = "";
-      quantity.innerText = 0;
-      emptyBasket();
-      const newBasket = document.getElementById("basket");
-      if (newBasket) {
-        newBasket.classList.add("basket-active");
-      }
-    }
-  });
-}
-
-function deleteEmptyBasket() {
-  const emptyBasket = document.querySelector(".empty-basket");
-  if (emptyBasket) {
-    emptyBasket.remove();
-  }
+function getCheckoutBtn() {
+  const checkoutBtn = document.getElementById("checkout-button");
+  if (checkoutBtn)
+    checkoutBtn.addEventListener("click", () => {
+      const basket = document.getElementById("basket");
+      basket.classList.remove("basket-active");
+    });
 }
