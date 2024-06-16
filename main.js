@@ -5,7 +5,178 @@ const minusBtn = document.getElementById("minus-button");
 const addCartBtn = document.getElementById("add-to-cart-button");
 const shoppingCartBtn = document.getElementById("shopping-cart-button");
 
-// remove mobile button when page expands to desktop
+function desktopNav() {
+  const createNav = document.createElement("nav");
+  createNav.className = "desktop-nav";
+  createNav.innerHTML = `
+    <img src="./images/logo.svg" alt="sneakers" />
+    <ul>
+      <a href="#">Collections</a>
+      <a href="#">Men</a>
+      <a href="#">Women</a>
+      <a href="#">About</a>
+      <a href="#">Contact</a>
+    </ul>
+    <button id="shopping-cart-button">
+      <img src="./images/icon-cart.svg" alt="shopping cart" />
+      <span id="shopping-cart-quantity"></span>
+    </button>
+    <img
+      src="./images/image-avatar.png"
+      alt="profile picture"
+      class="profile-picture"
+    />`;
+  return createNav;
+}
+
+function mobileNav() {
+  const createNav = document.createElement("nav");
+  createNav.id = "mobile-nav";
+  createNav.innerHTML = `
+    <button id="menu-button">
+      <img src="./images/icon-menu.svg" alt="Three horizontal lines" />
+    </button>
+    <img src="./images/logo.svg" alt="sneakers" />
+    <dialog id="nav-dialog">
+      <button id="close-button">
+        <img src="./images/icon-close.svg" alt="x" />
+      </button>
+      <ul>
+        <a href="#">Collections</a>
+        <a href="#">Men</a>
+        <a href="#">Women</a>
+        <a href="#">About</a>
+        <a href="#">Contact</a>
+      </ul>
+    </dialog>
+    <button id="shopping-cart-button">
+      <img src="./images/icon-cart.svg" alt="shopping cart" />
+      <span id="shopping-cart-quantity"></span>
+    </button>
+    <img
+      src="./images/image-avatar.png"
+      alt="profile picture"
+      class="profile-picture"
+    />`;
+  return createNav;
+}
+
+function mobileLightbox() {
+  const createSection = document.createElement("section");
+  createSection.className = "mobile";
+  createSection.innerHTML = `<button id="left-button" class="mobile-button">
+          <img src="./images/icon-previous.svg" alt="left arrow" />
+        </button>
+          <img
+            id="main-img"
+            class="main-img"
+            src="./images/image-product-1.jpg"
+            alt="white and beige sneakers"
+          />
+          <img src="./images/image-product-1.jpg" alt="" class="lightbox-img" />
+          <img src="./images/image-product-2.jpg" alt="" class="lightbox-img" />
+          <img src="./images/image-product-3.jpg" alt="" class="lightbox-img" />
+          <img src="./images/image-product-4.jpg" alt="" class="lightbox-img" />
+        <button id="right-button" class="mobile-button">
+          <img src="./images/icon-next.svg" alt="right arrow" />
+        </button>`;
+  return createSection;
+}
+
+function desktopLightbox() {
+  const createSection = document.createElement("section");
+  createSection.className = "desktop";
+  createSection.innerHTML = `<button>
+  <img
+    id="main-img"
+    class="main-img"
+    src="./images/image-product-1.jpg"
+    alt="white and beige sneakers"
+  />
+  <img src="./images/image-product-1.jpg" alt="" class="lightbox-img" />
+  <img src="./images/image-product-2.jpg" alt="" class="lightbox-img" />
+  <img src="./images/image-product-3.jpg" alt="" class="lightbox-img" />
+  <img src="./images/image-product-4.jpg" alt="" class="lightbox-img" />
+</button>
+<div>
+  <button>
+    <img
+      src="./images/image-product-1-thumbnail.jpg"
+      alt=""
+      class="thumbnail"
+    />
+  </button>
+  <button>
+    <img
+      src="./images/image-product-2-thumbnail.jpg"
+      alt=""
+      class="thumbnail"
+    />
+  </button>
+  <button>
+    <img
+      src="./images/image-product-3-thumbnail.jpg"
+      alt=""
+      class="thumbnail"
+    />
+  </button>
+  <button>
+    <img
+      src="./images/image-product-4-thumbnail.jpg"
+      alt=""
+      class="thumbnail"
+    />
+  </button>
+</div>
+`;
+  return createSection;
+}
+
+function mobileDesktop() {
+  const windowSize = window.innerWidth;
+  const main = document.querySelector("main");
+  const existingDesktopNav = document.querySelector(".desktop-nav");
+  const existingMobileNav = document.getElementById("mobile-nav");
+  const existingDesktopLightbox = document.querySelector(".desktop");
+  const existingMobileLightbox = document.querySelector(".mobile");
+
+  if (windowSize >= 720) {
+    if (existingMobileNav) {
+      existingMobileNav.remove();
+    }
+    if (!existingDesktopNav) {
+      const nav = desktopNav();
+      main.insertBefore(nav, main.firstChild);
+    }
+
+    if (!existingDesktopLightbox) {
+      if (existingMobileLightbox) {
+        existingMobileLightbox.remove();
+      }
+      const addDesktop = desktopLightbox();
+      main.insertBefore(addDesktop, main.children[1]);
+    }
+  } else {
+    if (existingDesktopNav) {
+      existingDesktopNav.remove();
+    }
+    if (!existingMobileNav) {
+      const nav = mobileNav();
+      main.insertBefore(nav, main.firstChild);
+    }
+
+    if (!existingMobileLightbox) {
+      if (existingDesktopLightbox) {
+        existingDesktopLightbox.remove();
+      }
+      const addMobile = mobileLightbox();
+      main.insertBefore(addMobile, main.children[1]);
+    }
+  }
+}
+
+window.addEventListener("resize", mobileDesktop);
+window.addEventListener("DOMContentLoaded", mobileDesktop);
 
 function getLightboxCloseBtn() {
   const lightboxCloseBtn = document.getElementById("lightbox-close-button");
