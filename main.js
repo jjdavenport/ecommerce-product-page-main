@@ -4,6 +4,28 @@ const plusBtn = document.getElementById("plus-button");
 const minusBtn = document.getElementById("minus-button");
 const addCartBtn = document.getElementById("add-to-cart-button");
 const shoppingCartBtn = document.getElementById("shopping-cart-button");
+let currentIndex = 0;
+
+const images = [
+  "./images/image-product-1.jpg",
+  "./images/image-product-2.jpg",
+  "./images/image-product-3.jpg",
+  "./images/image-product-4.jpg",
+];
+
+function leftButton() {
+  const mainImg = document.getElementById("main-img");
+  currentIndex = currentIndex === 0 ? images.length - 1 : currentIndex - 1;
+  mainImg.src = images[currentIndex];
+  console.log("clickL");
+}
+
+function rightButton() {
+  const mainImg = document.getElementById("main-img");
+  currentIndex = currentIndex === images.length - 1 ? 0 : currentIndex + 1;
+  mainImg.src = images[currentIndex];
+  console.log("clickR");
+}
 
 function desktopNav() {
   const createNav = document.createElement("nav");
@@ -240,7 +262,11 @@ function mobileDesktop() {
 }
 
 window.addEventListener("resize", mobileDesktop);
-window.addEventListener("DOMContentLoaded", mobileDesktop);
+window.addEventListener("DOMContentLoaded", () => {
+  mobileDesktop();
+  leftButton();
+  rightButton();
+});
 
 function menuClick() {
   const mobileMenu = document.getElementById("nav");
@@ -321,6 +347,12 @@ document.addEventListener("click", (e) => {
   if (target.id === "close-button" || target.closest("#close-button")) {
     closeMenuClick();
   }
+  if (target.id === "left-button" || target.closest("#left-button")) {
+    leftButton();
+  }
+  if (target.id === "right-button" || target.closest("#right-button")) {
+    rightButton();
+  }
 });
 
 function shoppingCartClick() {
@@ -339,23 +371,6 @@ function shoppingCartClick() {
   if (newBasket) {
     newBasket.classList.toggle("basket-active");
     getCheckoutBtn();
-  }
-}
-function leftButton() {
-  const leftBtn = document.getElementById("left-button");
-  if (leftBtn) {
-    leftBtn.addEventListener("click", () => {
-      console.log("clickL");
-    });
-  }
-}
-
-function rightButton() {
-  const rightBtn = document.getElementById("right-button");
-  if (rightBtn) {
-    rightBtn.addEventListener("click", () => {
-      console.log("clickR");
-    });
   }
 }
 
