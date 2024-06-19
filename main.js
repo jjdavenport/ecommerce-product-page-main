@@ -6,6 +6,70 @@ const addCartBtn = document.getElementById("add-to-cart-button");
 const shoppingCartBtn = document.getElementById("shopping-cart-button");
 let currentIndex = 0;
 
+function lightboxCloseBtn() {
+  const lightboxCloseButton = document.getElementById("lightbox-close-button");
+  lightboxCloseButton.addEventListener("click", () => {
+    const lightbox = document.getElementById("lightbox");
+    const removeOverlay = document.getElementById("overlay");
+    lightbox.remove();
+    removeOverlay.remove();
+  });
+}
+
+function lightboxBtn() {
+  const lightbox = document.getElementById("lightbox");
+  if (!lightbox && window.innerWidth >= 720) {
+    const createOverlay = document.createElement("div");
+    createOverlay.id = "overlay";
+    document.body.appendChild(createOverlay);
+    const createDialog = document.createElement("dialog");
+    document.body.appendChild(createDialog);
+    createDialog.className = "lightbox-active";
+    createDialog.id = "lightbox";
+    createDialog.innerHTML = `<button id="lightbox-close-button">
+        <img src="./images/icon-close.svg" alt="Black cross" /></button>
+        <button id="left-button" class="desktop" alt="left arrow">
+          <img src="./images/icon-previous.svg" alt="left arrow" />
+        </button>
+        <img src="./images/image-product-1.jpg" alt="" class="hidden" id="lightbox-main-img"/>
+        <button id="right-button"  class="desktop">
+          <img src="./images/icon-next.svg"/>
+        </button>
+        <div>
+    <button>
+      <img
+        src="./images/image-product-1-thumbnail.jpg"
+        alt=""
+        class="thumbnail"
+      />
+    </button>
+    <button>
+      <img
+        src="./images/image-product-2-thumbnail.jpg"
+        alt=""
+        class="thumbnail"
+      />
+    </button>
+    <button>
+      <img
+        src="./images/image-product-3-thumbnail.jpg"
+        alt=""
+        class="thumbnail"
+      />
+    </button>
+    <button>
+      <img
+        src="./images/image-product-4-thumbnail.jpg"
+        alt=""
+        class="thumbnail"
+      />
+    </button>
+  </div>
+        `;
+    lightboxCloseBtn();
+  }
+}
+
 const images = [
   "./images/image-product-1.jpg",
   "./images/image-product-2.jpg",
@@ -14,17 +78,31 @@ const images = [
 ];
 
 function leftButton() {
-  const mainImg = document.getElementById("main-img");
-  currentIndex = currentIndex === 0 ? images.length - 1 : currentIndex - 1;
-  mainImg.src = images[currentIndex];
-  console.log("clickL");
+  const lightbox = document.getElementById("lightbox");
+  if (!lightbox) {
+    let mainImg = document.getElementById("main-img");
+    currentIndex = currentIndex === 0 ? images.length - 1 : currentIndex - 1;
+    mainImg.src = images[currentIndex];
+  }
+  if (lightbox) {
+    mainImg = document.getElementById("lightbox-main-img");
+    currentIndex = currentIndex === 0 ? images.length - 1 : currentIndex - 1;
+    mainImg.src = images[currentIndex];
+  }
 }
 
 function rightButton() {
-  const mainImg = document.getElementById("main-img");
-  currentIndex = currentIndex === images.length - 1 ? 0 : currentIndex + 1;
-  mainImg.src = images[currentIndex];
-  console.log("clickR");
+  const lightbox = document.getElementById("lightbox");
+  if (!lightbox) {
+    let mainImg = document.getElementById("main-img");
+    currentIndex = currentIndex === images.length - 1 ? 0 : currentIndex + 1;
+    mainImg.src = images[currentIndex];
+  }
+  if (lightbox) {
+    mainImg = document.getElementById("lightbox-main-img");
+    currentIndex = currentIndex === images.length - 1 ? 0 : currentIndex + 1;
+    mainImg.src = images[currentIndex];
+  }
 }
 
 function desktopNav() {
@@ -108,7 +186,7 @@ function mobileLightbox() {
 function desktopLightbox() {
   const createSection = document.createElement("section");
   createSection.className = "desktop";
-  createSection.innerHTML = `<button>
+  createSection.innerHTML = `<button id="lightbox-button">
   <img
     id="main-img"
     class="main-img"
@@ -225,7 +303,6 @@ function mobileDesktop() {
   const existingMobileNav = document.getElementById("mobile-nav");
   const existingDesktopLightbox = document.querySelector(".desktop");
   const existingMobileLightbox = document.querySelector(".mobile");
-
   if (windowSize >= 720) {
     if (existingMobileNav) {
       existingMobileNav.remove();
@@ -273,7 +350,6 @@ function menuClick() {
   if (mobileMenu) {
     mobileMenu.classList.add("nav-active");
   }
-
   let overlay = document.getElementById("overlay");
   if (!overlay) {
     overlay = document.createElement("div");
@@ -352,6 +428,9 @@ document.addEventListener("click", (e) => {
   }
   if (target.id === "right-button" || target.closest("#right-button")) {
     rightButton();
+  }
+  if (target.id === "lightbox-button" || target.closest("#lightbox-button")) {
+    lightboxBtn();
   }
 });
 
