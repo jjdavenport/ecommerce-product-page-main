@@ -6,6 +6,26 @@ const addCartBtn = document.getElementById("add-to-cart-button");
 const shoppingCartBtn = document.getElementById("shopping-cart-button");
 let currentIndex = 0;
 
+function lightboxThumbnail() {
+  const thumbnails = document.querySelectorAll(".lightbox-thumbnail");
+  const mainImg = document.getElementById("lightbox-main-img");
+  thumbnails.forEach((img, i) => {
+    img.addEventListener("click", () => {
+      mainImg.src = images[i];
+    });
+  });
+}
+
+function desktopThumbnail() {
+  const desktopThumbnails = document.querySelectorAll(".desktop-thumbnail");
+  const desktopMainImg = document.getElementById("main-img");
+  desktopThumbnails.forEach((img, i) => {
+    img.addEventListener("click", () => {
+      desktopMainImg.src = images[i];
+    });
+  });
+}
+
 function lightboxCloseBtn() {
   const lightboxCloseButton = document.getElementById("lightbox-close-button");
   lightboxCloseButton.addEventListener("click", () => {
@@ -31,42 +51,38 @@ function lightboxBtn() {
         <button id="left-button" class="desktop" alt="left arrow">
           <img src="./images/icon-previous.svg" alt="left arrow" />
         </button>
-        <img src="./images/image-product-1.jpg" alt="" class="hidden" id="lightbox-main-img"/>
+        <img src="./images/image-product-1.jpg" alt="" id="lightbox-main-img"/>
         <button id="right-button"  class="desktop">
           <img src="./images/icon-next.svg"/>
         </button>
         <div>
-    <button>
+    <button class="lightbox-thumbnail">
       <img
         src="./images/image-product-1-thumbnail.jpg"
         alt=""
-        class="thumbnail"
       />
     </button>
-    <button>
+    <button class="lightbox-thumbnail">
       <img
         src="./images/image-product-2-thumbnail.jpg"
         alt=""
-        class="thumbnail"
       />
     </button>
-    <button>
+    <button class="lightbox-thumbnail">
       <img
         src="./images/image-product-3-thumbnail.jpg"
         alt=""
-        class="thumbnail"
       />
     </button>
-    <button>
+    <button class="lightbox-thumbnail">
       <img
         src="./images/image-product-4-thumbnail.jpg"
         alt=""
-        class="thumbnail"
       />
     </button>
-  </div>
-        `;
+  </div>`;
     lightboxCloseBtn();
+    lightboxThumbnail();
   }
 }
 
@@ -173,10 +189,6 @@ function mobileLightbox() {
             src="./images/image-product-1.jpg"
             alt="white and beige sneakers"
           />
-          <img src="./images/image-product-1.jpg" alt="" class="lightbox-img" />
-          <img src="./images/image-product-2.jpg" alt="" class="lightbox-img" />
-          <img src="./images/image-product-3.jpg" alt="" class="lightbox-img" />
-          <img src="./images/image-product-4.jpg" alt="" class="lightbox-img" />
         <button id="right-button" class="mobile-button">
           <img src="./images/icon-next.svg" alt="right arrow" />
         </button>`;
@@ -193,42 +205,33 @@ function desktopLightbox() {
     src="./images/image-product-1.jpg"
     alt="white and beige sneakers"
   />
-  <img src="./images/image-product-1.jpg" alt="" class="lightbox-img" />
-  <img src="./images/image-product-2.jpg" alt="" class="lightbox-img" />
-  <img src="./images/image-product-3.jpg" alt="" class="lightbox-img" />
-  <img src="./images/image-product-4.jpg" alt="" class="lightbox-img" />
 </button>
 <div>
-  <button>
+  <button class="desktop-thumbnail">
     <img
       src="./images/image-product-1-thumbnail.jpg"
       alt=""
-      class="thumbnail"
     />
   </button>
-  <button>
+  <button class="desktop-thumbnail">
     <img
       src="./images/image-product-2-thumbnail.jpg"
       alt=""
-      class="thumbnail"
     />
   </button>
-  <button>
+  <button class="desktop-thumbnail">
     <img
       src="./images/image-product-3-thumbnail.jpg"
       alt=""
-      class="thumbnail"
     />
   </button>
-  <button>
+  <button class="desktop-thumbnail">
     <img
       src="./images/image-product-4-thumbnail.jpg"
       alt=""
-      class="thumbnail"
     />
   </button>
-</div>
-`;
+</div>`;
   return createSection;
 }
 
@@ -318,6 +321,7 @@ function mobileDesktop() {
       }
       const addDesktop = desktopLightbox();
       main.insertBefore(addDesktop, main.children[1]);
+      desktopThumbnail();
     }
   } else {
     if (existingDesktopNav) {
@@ -343,6 +347,7 @@ window.addEventListener("DOMContentLoaded", () => {
   mobileDesktop();
   leftButton();
   rightButton();
+  desktopThumbnail();
 });
 
 function menuClick() {
