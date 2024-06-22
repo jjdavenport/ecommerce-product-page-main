@@ -125,6 +125,7 @@ function desktopNav() {
   const createNav = document.createElement("nav");
   createNav.className = "desktop-nav";
   createNav.innerHTML = `
+  <div class="left-nav">
     <img src="./images/logo.svg" alt="sneakers" />
     <ul>
       <a href="#">Collections</a>
@@ -133,6 +134,8 @@ function desktopNav() {
       <a href="#">About</a>
       <a href="#">Contact</a>
     </ul>
+    </div>
+    <div class="right-nav">
     <button id="shopping-cart-button">
       <img src="./images/icon-cart.svg" alt="shopping cart" />
       <span id="shopping-cart-quantity"></span>
@@ -141,7 +144,8 @@ function desktopNav() {
       src="./images/image-avatar.png"
       alt="profile picture"
       class="profile-picture"
-    />`;
+    />
+    </div>`;
   return createNav;
 }
 
@@ -209,7 +213,7 @@ function desktopLightbox() {
     alt="white and beige sneakers"
   />
 </button>
-<div>
+<div class="thumbnail-row">
   <button class="desktop-thumbnail">
     <img
       src="./images/image-product-1-thumbnail.jpg"
@@ -310,7 +314,7 @@ function mobileDesktop() {
   const existingDesktopLightbox = document.querySelector(".desktop");
   const existingMobileLightbox = document.querySelector(".mobile");
   const lightbox = document.getElementById("lightbox");
-  if (windowSize >= 720) {
+  if (windowSize >= 640) {
     if (existingMobileNav) {
       existingMobileNav.remove();
     }
@@ -386,7 +390,7 @@ window.addEventListener("resize", () => {
   const mobileMenu = document.getElementById("nav");
   const removeOverlay = document.getElementById("overlay");
   const windowSize = window.innerWidth;
-  if (windowSize >= 720) {
+  if (windowSize >= 640) {
     if (mobileMenu) {
       mobileMenu.classList.remove("nav-active");
     }
