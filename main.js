@@ -148,32 +148,35 @@ function desktopNav() {
 function mobileNav() {
   const createNav = document.createElement("nav");
   createNav.id = "mobile-nav";
-  createNav.innerHTML = `
-    <button id="menu-button">
-      <img src="./images/icon-menu.svg" alt="Three horizontal lines" />
-    </button>
-    <img src="./images/logo.svg" alt="sneakers" />
-    <dialog id="nav">
-      <button id="close-button">
-        <img src="./images/icon-close.svg" alt="x" />
-      </button>
-      <ul>
-        <a href="#">Collections</a>
-        <a href="#">Men</a>
-        <a href="#">Women</a>
-        <a href="#">About</a>
-        <a href="#">Contact</a>
-      </ul>
-    </dialog>
-    <button id="shopping-cart-button">
-      <img src="./images/icon-cart.svg" alt="shopping cart" />
-      <span id="shopping-cart-quantity"></span>
-    </button>
-    <img
-      src="./images/image-avatar.png"
-      alt="profile picture"
-      class="profile-picture"
-    />`;
+  createNav.innerHTML = `   <section class="left-nav">
+          <button id="menu-button">
+            <img src="./images/icon-menu.svg" alt="three horizontal lines" />
+          </button>
+          <img src="./images/logo.svg" alt="sneakers" />
+          <dialog id="nav">
+            <button id="close-button">
+              <img src="./images/icon-close.svg" alt="x" />
+            </button>
+            <ul>
+              <a href="#">Collections</a>
+              <a href="#">Men</a>
+              <a href="#">Women</a>
+              <a href="#">About</a>
+              <a href="#">Contact</a>
+            </ul>
+          </dialog>
+        </section>
+        <section class="right-nav">
+          <button id="shopping-cart-button">
+            <img src="./images/icon-cart.svg" alt="shopping cart" />
+            <span id="shopping-cart-quantity"></span>
+          </button>
+          <img
+            src="./images/image-avatar.png"
+            alt="profile picture"
+            class="profile-picture"
+          />
+        </section>`;
   return createNav;
 }
 
@@ -306,6 +309,7 @@ function mobileDesktop() {
   const existingMobileNav = document.getElementById("mobile-nav");
   const existingDesktopLightbox = document.querySelector(".desktop");
   const existingMobileLightbox = document.querySelector(".mobile");
+  const lightbox = document.getElementById("lightbox");
   if (windowSize >= 720) {
     if (existingMobileNav) {
       existingMobileNav.remove();
@@ -324,6 +328,9 @@ function mobileDesktop() {
       desktopThumbnail();
     }
   } else {
+    if (lightbox) {
+      lightbox.remove();
+    }
     if (existingDesktopNav) {
       existingDesktopNav.remove();
     }

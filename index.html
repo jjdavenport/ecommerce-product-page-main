@@ -31,31 +31,35 @@
   <body>
     <main>
       <nav id="mobile-nav">
-        <button id="menu-button">
-          <img src="./images/icon-menu.svg" alt="Three horizontal lines" />
-        </button>
-        <img src="./images/logo.svg" alt="sneakers" />
-        <dialog id="nav">
-          <button id="close-button">
-            <img src="./images/icon-close.svg" alt="x" />
+        <section class="left-nav">
+          <button id="menu-button">
+            <img src="./images/icon-menu.svg" alt="three horizontal lines" />
           </button>
-          <ul>
-            <a href="#">Collections</a>
-            <a href="#">Men</a>
-            <a href="#">Women</a>
-            <a href="#">About</a>
-            <a href="#">Contact</a>
-          </ul>
-        </dialog>
-        <button id="shopping-cart-button">
-          <img src="./images/icon-cart.svg" alt="shopping cart" />
-          <span id="shopping-cart-quantity"></span>
-        </button>
-        <img
-          src="./images/image-avatar.png"
-          alt="profile picture"
-          class="profile-picture"
-        />
+          <img src="./images/logo.svg" alt="sneakers" />
+          <dialog id="nav">
+            <button id="close-button">
+              <img src="./images/icon-close.svg" alt="x" />
+            </button>
+            <ul>
+              <a href="#">Collections</a>
+              <a href="#">Men</a>
+              <a href="#">Women</a>
+              <a href="#">About</a>
+              <a href="#">Contact</a>
+            </ul>
+          </dialog>
+        </section>
+        <section class="right-nav">
+          <button id="shopping-cart-button">
+            <img src="./images/icon-cart.svg" alt="shopping cart" />
+            <span id="shopping-cart-quantity"></span>
+          </button>
+          <img
+            src="./images/image-avatar.png"
+            alt="profile picture"
+            class="profile-picture"
+          />
+        </section>
       </nav>
       <section class="mobile">
         <button id="left-button" class="mobile-button">
@@ -72,24 +76,29 @@
         </button>
       </section>
       <section class="text">
-        <span>Sneaker Company</span>
+        <h2>Sneaker Company</h2>
         <h1>Fall Limited Edition Sneakers</h1>
         <p>
           These low-profile sneakers are your perfect casual wear companion.
           Featuring a durable rubber outer sole, they’ll withstand everything
           the weather can offer.
         </p>
-        <span>$125.00 50% $250.00</span>
-        <section class="right">
+        <span class="price-discount">
+          <span class="price">$125.00<span class="discount">50%</span></span
+          ><span>$250.00</span></span
+        >
+        <section class="increment">
           <button id="minus-button">
-            <img src="./images/icon-minus.svg" alt="minus symbol" /></button
-          ><span id="quantity">0</span
-          ><button id="plus-button">
+            <img src="./images/icon-minus.svg" alt="minus symbol" />
+          </button>
+          <span id="quantity">0</span>
+          <button id="plus-button">
             <img src="./images/icon-plus.svg" alt="plus symbol" />
           </button>
         </section>
         <button id="add-to-cart-button">
-          <img src="./images/icon-cart.svg" alt="shopping cart" />Add to cart
+          <img src="./images/icon-cart.svg" alt="shopping cart" />
+          Add to cart
         </button>
       </section>
     </main>
