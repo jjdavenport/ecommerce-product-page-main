@@ -6,24 +6,36 @@ const addCartBtn = document.getElementById("add-to-cart-button");
 const shoppingCartBtn = document.getElementById("shopping-cart-button");
 let currentIndex = 0;
 
-function lightboxThumbnail() {
-  const thumbnails = document.querySelectorAll(".lightbox-thumbnail");
-  const mainImg = document.getElementById("lightbox-main-img");
-  thumbnails.forEach((img, i) => {
-    img.addEventListener("click", () => {
-      mainImg.src = images[i];
+function desktopThumbnail() {
+  const desktopThumbnails = document.querySelectorAll(".thumbnail-img");
+  const desktopMainImg = document.getElementById("main-img");
+  desktopThumbnails.forEach((t, i) => {
+    t.addEventListener("click", () => {
+      desktopMainImg.src = images[i];
+      desktopThumbnails.forEach((t) => {
+        t.classList.remove("thumbnail-active");
+      });
+      t.classList.add("thumbnail-active");
     });
   });
+  desktopThumbnails[0].click();
 }
 
-function desktopThumbnail() {
-  const desktopThumbnails = document.querySelectorAll(".desktop-thumbnail");
-  const desktopMainImg = document.getElementById("main-img");
-  desktopThumbnails.forEach((img, i) => {
-    img.addEventListener("click", () => {
-      desktopMainImg.src = images[i];
+function lightboxThumbnail() {
+  const lightboxThumbnails = document.querySelectorAll(
+    ".lightbox-thumbnail-img"
+  );
+  const lightboxMainImg = document.getElementById("lightbox-main-img");
+  lightboxThumbnails.forEach((t, i) => {
+    t.addEventListener("click", () => {
+      lightboxMainImg.src = images[i];
+      lightboxThumbnails.forEach((t) => {
+        t.classList.remove("thumbnail-active");
+      });
+      t.classList.add("thumbnail-active");
     });
   });
+  lightboxThumbnails[0].click();
 }
 
 function lightboxCloseBtn() {
@@ -58,24 +70,28 @@ function lightboxBtn() {
         <div>
     <button class="lightbox-thumbnail">
       <img
+      class="lightbox-thumbnail-img"
         src="./images/image-product-1-thumbnail.jpg"
         alt=""
       />
     </button>
     <button class="lightbox-thumbnail">
       <img
+      class="lightbox-thumbnail-img"
         src="./images/image-product-2-thumbnail.jpg"
         alt=""
       />
     </button>
     <button class="lightbox-thumbnail">
       <img
+      class="lightbox-thumbnail-img"
         src="./images/image-product-3-thumbnail.jpg"
         alt=""
       />
     </button>
     <button class="lightbox-thumbnail">
       <img
+      class="lightbox-thumbnail-img"
         src="./images/image-product-4-thumbnail.jpg"
         alt=""
       />
@@ -216,24 +232,28 @@ function desktopLightbox() {
 <div class="thumbnail-row">
   <button class="desktop-thumbnail">
     <img
+      class="thumbnail-img"
       src="./images/image-product-1-thumbnail.jpg"
       alt=""
     />
   </button>
   <button class="desktop-thumbnail">
     <img
+    class="thumbnail-img"
       src="./images/image-product-2-thumbnail.jpg"
       alt=""
     />
   </button>
   <button class="desktop-thumbnail">
     <img
+    class="thumbnail-img"
       src="./images/image-product-3-thumbnail.jpg"
       alt=""
     />
   </button>
   <button class="desktop-thumbnail">
     <img
+    class="thumbnail-img"
       src="./images/image-product-4-thumbnail.jpg"
       alt=""
     />
@@ -258,7 +278,7 @@ function itemBasket(addQnt) {
       <img class="item-img" src="./images/image-product-1-thumbnail.jpg" alt="white and beige sneakers">
       <div class="order-details">
       <span>Fall Limited Edition Sneakers</span>
-      <span>$125.00 X ${addQnt} $${totalPrice}</span> 
+      <span>$125.00 X ${addQnt} ${totalPrice}</span> 
       </div>
     <button id="delete-button">
       <img src="./images/icon-delete.svg" alt="rubbish bin / trash can" />

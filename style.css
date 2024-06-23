@@ -273,9 +273,6 @@ dialog {
   border-radius: 0.5rem;
 }
 
-.item-basket {
-}
-
 .cart {
   padding: 1rem;
   border-bottom: 0.0625rem solid black;
@@ -380,13 +377,13 @@ dialog {
     gap: 1rem;
   }
   .thumbnail-active {
-    border: 0.625rem solid black;
+    border: 0.0625rem solid hsl(26, 100%, 55%);
   }
   #nav {
     flex-direction: row;
   }
   .lightbox-thumbnail:hover {
-    outline: 2px solid black;
+    outline: 0.0625rem solid black;
   }
   #lightbox-main-img {
     width: 50vw;
