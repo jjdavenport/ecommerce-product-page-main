@@ -26,16 +26,25 @@ function lightboxThumbnail() {
     ".lightbox-thumbnail-img"
   );
   const lightboxMainImg = document.getElementById("lightbox-main-img");
+
   lightboxThumbnails.forEach((t, i) => {
     t.addEventListener("click", () => {
       lightboxMainImg.src = images[i];
-      lightboxThumbnails.forEach((t) => {
-        t.classList.remove("thumbnail-active");
-      });
-      t.classList.add("thumbnail-active");
+      currentIndex = i;
+      thumbnailButton();
     });
   });
+
   lightboxThumbnails[0].click();
+}
+
+function thumbnailButton() {
+  const lightboxThumbnails = document.querySelectorAll(
+    ".lightbox-thumbnail-img"
+  );
+  lightboxThumbnails.forEach((t, i) => {
+    t.classList.toggle("thumbnail-active", i === currentIndex);
+  });
 }
 
 function lightboxCloseBtn() {
@@ -111,30 +120,28 @@ const images = [
 
 function leftButton() {
   const lightbox = document.getElementById("lightbox");
-  if (!lightbox) {
-    let mainImg = document.getElementById("main-img");
-    currentIndex = currentIndex === 0 ? images.length - 1 : currentIndex - 1;
-    mainImg.src = images[currentIndex];
-  }
+  let mainImg;
   if (lightbox) {
     mainImg = document.getElementById("lightbox-main-img");
-    currentIndex = currentIndex === 0 ? images.length - 1 : currentIndex - 1;
-    mainImg.src = images[currentIndex];
+  } else {
+    mainImg = document.getElementById("main-img");
   }
+  currentIndex = currentIndex === 0 ? images.length - 1 : currentIndex - 1;
+  mainImg.src = images[currentIndex];
+  thumbnailButton();
 }
 
 function rightButton() {
   const lightbox = document.getElementById("lightbox");
-  if (!lightbox) {
-    let mainImg = document.getElementById("main-img");
-    currentIndex = currentIndex === images.length - 1 ? 0 : currentIndex + 1;
-    mainImg.src = images[currentIndex];
-  }
+  let mainImg;
   if (lightbox) {
     mainImg = document.getElementById("lightbox-main-img");
-    currentIndex = currentIndex === images.length - 1 ? 0 : currentIndex + 1;
-    mainImg.src = images[currentIndex];
+  } else {
+    mainImg = document.getElementById("main-img");
   }
+  currentIndex = currentIndex === images.length - 1 ? 0 : currentIndex + 1;
+  mainImg.src = images[currentIndex];
+  thumbnailButton();
 }
 
 function desktopNav() {

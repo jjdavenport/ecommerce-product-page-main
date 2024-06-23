@@ -129,11 +129,23 @@ h1 {
   width: 100%;
   justify-content: space-between;
   height: 3.125rem;
-  align-items: center;
   background: hsl(223, 64%, 98%);
 }
 
+#minus-button {
+  display: flex;
+  align-items: center;
+}
+
+#plus-button {
+  display: flex;
+  align-items: center;
+}
+
 #quantity {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   font-weight: 700;
 }
 
@@ -236,7 +248,7 @@ dialog {
 }
 
 #add-to-cart-button:hover {
-  background: hsl(26, 100%, 55%, 0.8);
+  background: hsl(26, 100%, 55%, 0.6);
 }
 
 .nav-active {
@@ -365,6 +377,13 @@ dialog {
 }
 
 @media screen and (width >= 40rem) {
+  #lightbox {
+    display: flex;
+    flex-direction: column;
+    top: 25%;
+    left: 25%;
+    background: none;
+  }
   #basket {
     top: 15%;
     left: 60%;
@@ -376,14 +395,32 @@ dialog {
     grid-template-columns: 1fr 2fr;
     gap: 1rem;
   }
+  #lightbox-close-button {
+    display: flex;
+    justify-content: flex-end;
+    fill: #fff;
+  }
+  #lightbox-close-button:hover {
+    cursor: pointer;
+  }
+  #lightbox-main-img {
+    border-radius: 12px;
+  }
   .thumbnail-active {
-    border: 0.0625rem solid hsl(26, 100%, 55%);
+    outline: 0.125rem solid hsl(26, 100%, 55%);
   }
   #nav {
     flex-direction: row;
   }
-  .lightbox-thumbnail:hover {
-    outline: 0.0625rem solid black;
+  .lightbox-thumbnail-img {
+    height: 3.75rem;
+  }
+  .lightbox-thumbnail-img {
+    border-radius: 0.5rem;
+  }
+  .lightbox-thumbnail-img:hover {
+    outline: 0.125rem solid hsl(26, 100%, 55%);
+    border-radius: 0.5rem;
   }
   #lightbox-main-img {
     width: 50vw;
@@ -396,7 +433,6 @@ dialog {
     max-width: 50vw;
   }
   main {
-    padding: 2rem;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: repeat(2, 0.1fr);
@@ -404,7 +440,6 @@ dialog {
   .desktop-nav {
     display: flex;
     justify-content: space-between;
-    padding: 2rem;
     grid-row: 1 / 1;
     grid-column: 1 / 3;
     border-bottom: 0.0625rem solid black;
@@ -431,11 +466,21 @@ dialog {
   .desktop-nav {
     display: flex;
   }
+  .desktop-nav img:first-child {
+    border-bottom: 0.25rem solid transparent;
+  }
   .desktop-nav ul {
+    height: 100%;
     flex-direction: row;
   }
   .desktop-nav ul a {
+    display: flex;
+    align-items: center;
     color: hsl(0, 0%, 0%);
+    border-bottom: 0.25rem solid transparent;
+  }
+  .desktop-nav ul a:hover {
+    border-bottom: 0.25rem solid hsl(26, 100%, 55%);
   }
   .left-nav {
     display: flex;
@@ -459,6 +504,10 @@ dialog {
   .desktop-thumbnail img {
     height: 5rem;
     border-radius: 0.625rem;
+  }
+  .thumbnail-img:hover {
+    outline: 0.125rem solid hsl(26, 100%, 55%);
+    border-radius: 0.5rem;
   }
   .thumbnail-row {
     display: flex;
