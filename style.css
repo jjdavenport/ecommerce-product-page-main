@@ -372,17 +372,52 @@ dialog {
   cursor: pointer;
 }
 
+.increment-path {
+  fill: hsl(26, 100%, 55%);
+}
+
+.increment-button:hover .increment-path {
+  fill: hsl(25, 100%, 94%);
+}
+
 #add-to-cart-button:hover {
   cursor: pointer;
 }
 
+#add-to-cart-button svg path {
+  fill: hsl(0, 0%, 0%);
+}
+
+#left-button svg path:hover,
+#right-button svg path:hover {
+  fill: hsl(26, 100%, 55%);
+}
+
+#shopping-cart-button svg path {
+  fill: hsl(0, 0%, 0%);
+}
+
+.no-scroll {
+  overflow: hidden;
+}
+
 @media screen and (width >= 40rem) {
+  .close-path {
+    fill: hsl(0, 0%, 100%);
+  }
+  .close-svg:hover .close-path {
+    fill: hsl(26, 100%, 55%);
+    cursor: pointer;
+    height: min-content;
+    width: min-content;
+  }
   #lightbox {
     display: flex;
     flex-direction: column;
     top: 25%;
     left: 25%;
     background: none;
+    gap: 1rem;
   }
   #basket {
     top: 15%;
@@ -395,12 +430,15 @@ dialog {
     grid-template-columns: 1fr 2fr;
     gap: 1rem;
   }
+  .lightbox-thumbnail-row {
+    display: flex;
+    justify-content: space-around;
+  }
   #lightbox-close-button {
     display: flex;
     justify-content: flex-end;
-    fill: #fff;
   }
-  #lightbox-close-button:hover {
+  #lightbox-close-button svg:hover {
     cursor: pointer;
   }
   #lightbox-main-img {
@@ -419,6 +457,7 @@ dialog {
     border-radius: 0.5rem;
   }
   .lightbox-thumbnail-img:hover {
+    cursor: pointer;
     outline: 0.125rem solid hsl(26, 100%, 55%);
     border-radius: 0.5rem;
   }
@@ -433,6 +472,7 @@ dialog {
     max-width: 50vw;
   }
   main {
+    padding: 1rem;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: repeat(2, 0.1fr);
@@ -492,6 +532,7 @@ dialog {
   .right-nav {
     display: flex;
     gap: 2rem;
+    border-bottom: 0.25rem solid transparent;
   }
   #main-img {
     border-radius: 0.625rem;
