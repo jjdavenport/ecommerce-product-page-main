@@ -180,9 +180,13 @@ dialog {
   border: none;
 }
 
+.mobile {
+  position: relative;
+}
+
 #left-button {
-  position: fixed;
-  top: 30%;
+  position: absolute;
+  top: 40%;
   left: 5%;
   display: grid;
   place-content: center;
@@ -193,8 +197,8 @@ dialog {
 }
 
 #right-button {
-  position: fixed;
-  top: 30%;
+  position: absolute;
+  top: 40%;
   left: 85%;
   display: grid;
   place-content: center;
@@ -240,6 +244,10 @@ dialog {
 }
 
 #add-to-cart-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
   width: 100%;
   background: hsl(26, 100%, 55%);
   height: 3.125rem;
@@ -263,7 +271,8 @@ dialog {
   background: #fff;
 }
 
-#overlay {
+#overlay,
+#lightbox-overlay {
   position: fixed;
   top: 25;
   left: 25;
@@ -377,7 +386,7 @@ dialog {
 }
 
 .increment-button:hover .increment-path {
-  fill: hsl(25, 100%, 94%);
+  fill: hsl(26, 100%, 55%, 0.5);
 }
 
 #add-to-cart-button:hover {
@@ -401,7 +410,11 @@ dialog {
   overflow: hidden;
 }
 
-@media screen and (width >= 40rem) {
+.path:hover {
+  stroke: #ff6b6b;
+}
+
+@media screen and (min-width: 40rem) {
   .close-path {
     fill: hsl(0, 0%, 100%);
   }
@@ -414,7 +427,7 @@ dialog {
   #lightbox {
     display: flex;
     flex-direction: column;
-    top: 25%;
+    top: 20%;
     left: 25%;
     background: none;
     gap: 1rem;
@@ -433,6 +446,8 @@ dialog {
   .lightbox-thumbnail-row {
     display: flex;
     justify-content: space-around;
+    max-width: 40vw;
+    margin: 0 auto;
   }
   #lightbox-close-button {
     display: flex;
@@ -442,9 +457,24 @@ dialog {
     cursor: pointer;
   }
   #lightbox-main-img {
-    border-radius: 12px;
+    position: relative;
+    border-radius: 0.75rem;
+    width: 50vw;
+    margin: auto;
+  }
+  #left-button {
+    position: absolute;
+    z-index: 999;
+    top: 40%;
+    left: -5%;
+  }
+  #right-button {
+    position: absolute;
+    top: 40%;
+    left: 95%;
   }
   .thumbnail-active {
+    border-radius: 0.625rem;
     outline: 0.125rem solid hsl(26, 100%, 55%);
   }
   #nav {
@@ -461,9 +491,6 @@ dialog {
     outline: 0.125rem solid hsl(26, 100%, 55%);
     border-radius: 0.5rem;
   }
-  #lightbox-main-img {
-    width: 50vw;
-  }
   .lightbox-active {
     display: block;
     position: fixed;
@@ -475,33 +502,34 @@ dialog {
     padding: 1rem;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(2, 0.1fr);
+    grid-template-rows: 0.1fr 1fr;
+    column-gap: 4rem;
   }
   .desktop-nav {
     display: flex;
     justify-content: space-between;
     grid-row: 1 / 1;
     grid-column: 1 / 3;
-    border-bottom: 0.0625rem solid black;
+    border-bottom: 0.0625rem solid hsl(223, 64%, 98%);
   }
   .desktop {
+    gap: 1rem;
+    justify-content: center;
     display: flex;
     flex-direction: column;
-    gap: 2rem;
-    grid-row: 2 / 2;
-    grid-column: 1 / 1;
   }
   .desktop button:hover {
     cursor: pointer;
   }
   .text {
+    max-width: 55ch;
     display: flex;
     justify-content: center;
     grid-row: 2 / 2;
     grid-column: 2 / 2;
   }
   h1 {
-    font-size: 36px;
+    font-size: 2.25rem;
   }
   .desktop-nav {
     display: flex;
@@ -516,10 +544,12 @@ dialog {
   .desktop-nav ul a {
     display: flex;
     align-items: center;
-    color: hsl(0, 0%, 0%);
+    color: hsl(219, 9%, 45%);
+    font-weight: 400;
     border-bottom: 0.25rem solid transparent;
   }
   .desktop-nav ul a:hover {
+    color: hsl(220, 13%, 13%);
     border-bottom: 0.25rem solid hsl(26, 100%, 55%);
   }
   .left-nav {
@@ -535,16 +565,26 @@ dialog {
     border-bottom: 0.25rem solid transparent;
   }
   #main-img {
-    border-radius: 0.625rem;
     width: 100%;
+    border-radius: 0.625rem;
+  }
+  #lightbox-button {
+    max-width: 35vw;
+    width: fit-content;
+    height: fit-content;
+    margin: 0 auto;
   }
   .price-discount {
     flex-direction: column;
     gap: 0.5rem;
   }
-  .desktop-thumbnail img {
-    height: 5rem;
+  .desktop-thumbnail {
+    position: relative;
+  }
+  .thumbnail-img {
     border-radius: 0.625rem;
+    width: 100%;
+    height: 100%;
   }
   .thumbnail-img:hover {
     outline: 0.125rem solid hsl(26, 100%, 55%);
@@ -554,5 +594,7 @@ dialog {
     display: flex;
     gap: 1rem;
     justify-content: space-between;
+    max-width: 35vw;
+    margin: 0 auto;
   }
 }

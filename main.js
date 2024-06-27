@@ -7,7 +7,7 @@ const shoppingCartBtn = document.getElementById("shopping-cart-button");
 let currentIndex = 0;
 
 function desktopThumbnail() {
-  const desktopThumbnails = document.querySelectorAll(".thumbnail-img");
+  const desktopThumbnails = document.querySelectorAll(".desktop-thumbnail");
   const desktopMainImg = document.getElementById("main-img");
   desktopThumbnails.forEach((t, i) => {
     t.addEventListener("click", () => {
@@ -51,7 +51,7 @@ function lightboxCloseBtn() {
   const lightboxCloseButton = document.getElementById("lightbox-close-button");
   lightboxCloseButton.addEventListener("click", () => {
     const lightbox = document.getElementById("lightbox");
-    const removeOverlay = document.getElementById("overlay");
+    const removeOverlay = document.getElementById("lightbox-overlay");
     lightbox.remove();
     removeOverlay.remove();
   });
@@ -61,7 +61,7 @@ function lightboxBtn() {
   const lightbox = document.getElementById("lightbox");
   if (!lightbox && window.innerWidth >= 720) {
     const createOverlay = document.createElement("div");
-    createOverlay.id = "overlay";
+    createOverlay.id = "lightbox-overlay";
     document.body.appendChild(createOverlay);
     const createDialog = document.createElement("dialog");
     document.body.appendChild(createDialog);
@@ -73,12 +73,30 @@ function lightboxBtn() {
         9.62l-4.595 4.597-2.122-2.122L4.878 7.5.282 2.904 2.404.782l4.595 
         4.596L11.596.782Z" fill="#69707D" fill-rule="evenodd"/></svg>
         </button>
-        <button id="left-button" class="desktop" alt="left arrow">
-          <img src="./images/icon-previous.svg" alt="left arrow" />
+        <button id="left-button" class="arrow-button">
+               <svg width="12" height="18" xmlns="http://www.w3.org/2000/svg">
+            <path
+              class="path"
+              d="M11 1 3 9l8 8"
+              stroke="#1D2026"
+              stroke-width="3"
+              fill="none"
+              fill-rule="evenodd"
+            />
+          </svg>
         </button>
         <img src="./images/image-product-1.jpg" alt="" id="lightbox-main-img"/>
-        <button id="right-button"  class="desktop">
-          <img src="./images/icon-next.svg"/>
+        <button id="right-button"  class="arrow-button">
+               <svg width="13" height="18" xmlns="http://www.w3.org/2000/svg">
+            <path
+              class="path"
+              d="m2 1 8 8-8 8"
+              stroke="#1D2026"
+              stroke-width="3"
+              fill="none"
+              fill-rule="evenodd"
+            />
+          </svg>
         </button>
         <div>
         <div class="lightbox-thumbnail-row">
@@ -232,17 +250,35 @@ function mobileNav() {
 function mobileLightbox() {
   const createSection = document.createElement("section");
   createSection.className = "mobile";
-  createSection.innerHTML = `<button id="left-button" class="mobile-button">
-          <img src="./images/icon-previous.svg" alt="left arrow" />
+  createSection.innerHTML = `    <button id="left-button" class="arrow-button">
+          <svg width="12" height="18" xmlns="http://www.w3.org/2000/svg">
+            <path
+              class="path"
+              d="M11 1 3 9l8 8"
+              stroke="#1D2026"
+              stroke-width="3"
+              fill="none"
+              fill-rule="evenodd"
+            />
+          </svg>
         </button>
-          <img
-            id="main-img"
-            class="main-img"
-            src="./images/image-product-1.jpg"
-            alt="white and beige sneakers"
-          />
-        <button id="right-button" class="mobile-button">
-          <img src="./images/icon-next.svg" alt="right arrow" />
+        <img
+          id="main-img"
+          class="main-img"
+          src="./images/image-product-1.jpg"
+          alt="white and beige sneakers"
+        />
+        <button id="right-button" class="arrow-button">
+          <svg width="13" height="18" xmlns="http://www.w3.org/2000/svg">
+            <path
+              class="path"
+              d="m2 1 8 8-8 8"
+              stroke="#1D2026"
+              stroke-width="3"
+              fill="none"
+              fill-rule="evenodd"
+            />
+          </svg>
         </button>`;
   return createSection;
 }
@@ -250,44 +286,46 @@ function mobileLightbox() {
 function desktopLightbox() {
   const createSection = document.createElement("section");
   createSection.className = "desktop";
-  createSection.innerHTML = `<button id="lightbox-button">
-  <img
-    id="main-img"
-    class="main-img"
-    src="./images/image-product-1.jpg"
-    alt="white and beige sneakers"
-  />
-</button>
-<div class="thumbnail-row">
-  <button class="desktop-thumbnail">
-    <img
-      class="thumbnail-img"
-      src="./images/image-product-1-thumbnail.jpg"
-      alt=""
-    />
-  </button>
-  <button class="desktop-thumbnail">
-    <img
-    class="thumbnail-img"
-      src="./images/image-product-2-thumbnail.jpg"
-      alt=""
-    />
-  </button>
-  <button class="desktop-thumbnail">
-    <img
-    class="thumbnail-img"
-      src="./images/image-product-3-thumbnail.jpg"
-      alt=""
-    />
-  </button>
-  <button class="desktop-thumbnail">
-    <img
-    class="thumbnail-img"
-      src="./images/image-product-4-thumbnail.jpg"
-      alt=""
-    />
-  </button>
-</div>`;
+  createSection.innerHTML = `
+    <button id="lightbox-button">
+      <img
+        id="main-img"
+        class="main-img"
+        src="./images/image-product-1.jpg"
+        alt="white and beige sneakers"
+      />
+    </button>
+    <div class="thumbnail-row">
+      <button class="desktop-thumbnail">
+        <img
+          class="thumbnail-img"
+          src="./images/image-product-1-thumbnail.jpg"
+          alt="Thumbnail 1"
+        />
+      </button>
+      <button class="desktop-thumbnail">
+        <img
+          class="thumbnail-img"
+          src="./images/image-product-2-thumbnail.jpg"
+          alt="Thumbnail 2"
+        />
+      </button>
+      <button class="desktop-thumbnail">
+        <img
+          class="thumbnail-img"
+          src="./images/image-product-3-thumbnail.jpg"
+          alt="Thumbnail 3"
+        />
+      </button>
+      <button class="desktop-thumbnail">
+        <img
+          class="thumbnail-img"
+          src="./images/image-product-4-thumbnail.jpg"
+          alt="Thumbnail 4"
+        />
+      </button>
+    </div>
+  `;
   return createSection;
 }
 
@@ -444,6 +482,7 @@ function closeMenuClick() {
 window.addEventListener("resize", () => {
   const mobileMenu = document.getElementById("nav");
   const removeOverlay = document.getElementById("overlay");
+  const lightboxOverlay = document.getElementById("lightbox-overlay");
   const windowSize = window.innerWidth;
   if (windowSize >= 640) {
     if (mobileMenu) {
@@ -452,6 +491,8 @@ window.addEventListener("resize", () => {
     if (removeOverlay) {
       removeOverlay.remove();
     }
+  } else {
+    lightboxOverlay.remove();
   }
 });
 
