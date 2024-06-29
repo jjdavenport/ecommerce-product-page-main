@@ -54,6 +54,7 @@ function lightboxCloseBtn() {
     const removeOverlay = document.getElementById("lightbox-overlay");
     lightbox.remove();
     removeOverlay.remove();
+    document.body.classList.remove("no-scroll");
   });
 }
 
@@ -132,6 +133,7 @@ function lightboxBtn() {
   </div>`;
     lightboxCloseBtn();
     lightboxThumbnail();
+    document.body.classList.add("no-scroll");
   }
 }
 
@@ -342,10 +344,12 @@ function itemBasket(addQnt) {
   basket.innerHTML = `<span class="cart">Cart</span> 
   <div class="order-item">
     <div class="item">
+    <div class="item-details">
       <img class="item-img" src="./images/image-product-1-thumbnail.jpg" alt="white and beige sneakers">
       <div class="order-details">
       <span>Fall Limited Edition Sneakers</span>
-      <span>$125.00 X ${addQnt} ${totalPrice}</span> 
+      <span>$125.00 X ${addQnt} <span class="total-price">$${totalPrice}<span></span> 
+      </div>
       </div>
     <button id="delete-button">
       <img src="./images/icon-delete.svg" alt="rubbish bin / trash can" />
@@ -405,7 +409,7 @@ function mobileDesktop() {
   const existingDesktopLightbox = document.querySelector(".desktop");
   const existingMobileLightbox = document.querySelector(".mobile");
   const lightbox = document.getElementById("lightbox");
-  if (windowSize >= 640) {
+  if (windowSize >= 845) {
     if (existingMobileNav) {
       existingMobileNav.remove();
     }
@@ -484,7 +488,7 @@ window.addEventListener("resize", () => {
   const removeOverlay = document.getElementById("overlay");
   const lightboxOverlay = document.getElementById("lightbox-overlay");
   const windowSize = window.innerWidth;
-  if (windowSize >= 640) {
+  if (windowSize >= 845) {
     if (mobileMenu) {
       mobileMenu.classList.remove("nav-active");
     }

@@ -51,6 +51,7 @@
         </section>
         <section class="right-nav">
           <button id="shopping-cart-button">
+            <span id="shopping-cart-quantity"></span>
             <svg width="22" height="20" xmlns="http://www.w3.org/2000/svg">
               <path
                 d="M20.925 3.641H3.863L3.61.816A.896.896 0 0 0 2.717 0H.897a.896.896 
@@ -65,7 +66,6 @@
                 fill-rule="nonzero"
               />
             </svg>
-            <span id="shopping-cart-quantity"></span>
           </button>
           <img
             src="./images/image-avatar.png"
@@ -87,12 +87,14 @@
             />
           </svg>
         </button>
-        <img
-          id="main-img"
-          class="main-img"
-          src="./images/image-product-1.jpg"
-          alt="white and beige sneakers"
-        />
+        <div class="mobile-main-img">
+          <img
+            id="main-img"
+            class="main-img"
+            src="./images/image-product-1.jpg"
+            alt="white and beige sneakers"
+          />
+        </div>
         <button id="right-button" class="arrow-button">
           <svg width="13" height="18" xmlns="http://www.w3.org/2000/svg">
             <path
