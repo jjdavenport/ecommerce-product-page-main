@@ -33,6 +33,7 @@ body {
   display: none;
   flex-direction: column;
   gap: 3rem;
+  z-index: 999;
 }
 
 .left-nav {
@@ -203,7 +204,7 @@ dialog {
   width: 2.5rem;
   height: 2.5rem;
   border-radius: 50%;
-  z-index: 999;
+  z-index: 998;
 }
 
 #right-button {
@@ -299,6 +300,7 @@ dialog {
 }
 
 #basket {
+  position: fixed;
   height: 35%;
   width: 95%;
   top: 8%;
@@ -486,8 +488,9 @@ dialog {
     gap: 1.5rem;
   }
   #basket {
-    top: 10%;
-    left: 55%;
+    position: absolute;
+    top: 80px;
+    left: -250px;
     height: 15.625rem;
     width: 23.75rem;
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1), 5px 0 10px rgba(0, 0, 0, 0.1),
@@ -537,8 +540,6 @@ dialog {
   }
   .lightbox-thumbnail-img {
     width: 8vh;
-  }
-  .lightbox-thumbnail-img {
     border-radius: 0.5rem;
   }
   .lightbox-thumbnail-img:hover {
@@ -617,6 +618,7 @@ dialog {
     height: 2.8125rem;
   }
   .right-nav {
+    position: relative;
     display: flex;
     gap: 2rem;
     border-bottom: 0.25rem solid transparent;

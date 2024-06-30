@@ -339,23 +339,23 @@ function itemBasket(addQnt) {
     basket = document.createElement("dialog");
     basket.id = "basket";
     basket.className = "item-basket";
-    document.querySelector("main").appendChild(basket);
+    document.querySelector(".right-nav").appendChild(basket); // Append to right-nav
   }
   basket.innerHTML = `<span class="cart">Cart</span> 
   <div class="order-item">
     <div class="item">
-    <div class="item-details">
-      <img class="item-img" src="./images/image-product-1-thumbnail.jpg" alt="white and beige sneakers">
-      <div class="order-details">
-      <span>Fall Limited Edition Sneakers</span>
-            <span>$125.00 x ${addQnt}<span id="total-price"> $${totalPrice}</span></span>
+      <div class="item-details">
+        <img class="item-img" src="./images/image-product-1-thumbnail.jpg" alt="white and beige sneakers">
+        <div class="order-details">
+          <span>Fall Limited Edition Sneakers</span>
+          <span>$125.00 x ${addQnt}<span id="total-price"> $${totalPrice}</span></span>
+        </div>
       </div>
-      </div>
-    <button id="delete-button">
-      <img src="./images/icon-delete.svg" alt="rubbish bin / trash can" />
-    </button>
-          </div>
-            <button id="checkout-button">Checkout</button>
+      <button id="delete-button">
+        <img src="./images/icon-delete.svg" alt="rubbish bin / trash can" />
+      </button>
+    </div>
+    <button id="checkout-button">Checkout</button>
   </div>`;
   deleteItemBasket();
 }
@@ -367,12 +367,12 @@ function updateItemBasket(addQnt) {
 function emptyBasket() {
   const empty = document.createElement("dialog");
   empty.innerHTML = `<div class="empty">
-  <span>Cart</span>
-  <span>Your cart is empty.</span>
+    <span>Cart</span>
+    <span>Your cart is empty.</span>
   </div>`;
   empty.id = "basket";
   empty.className = "empty-basket";
-  document.querySelector("main").appendChild(empty);
+  document.querySelector(".right-nav").appendChild(empty); // Append to right-nav
 }
 
 function deleteItemBasket() {
@@ -517,30 +517,30 @@ addCartBtn.addEventListener("click", () => {
   const quantity = document.getElementById("quantity");
   let addQnt = parseInt(shoppingCartQnt.innerText) || 0;
   let qnt = parseInt(quantity.innerText) || 0;
+
   if (qnt >= 1) {
     const emptyBasket = document.querySelector(".empty-basket.basket-active");
+
     if (emptyBasket) {
       addQnt += qnt;
       shoppingCartQnt.innerText = addQnt;
       emptyBasket.classList.remove("basket-active");
       deleteEmptyBasket();
-      let itemBasket = document.getElementById("basket");
-      if (!itemBasket) {
-        itemBasket = document.createElement("dialog");
-        itemBasket.id = "basket";
-        itemBasket.className = "item-basket";
-        document.querySelector("main").appendChild(itemBasket);
-      }
-      updateItemBasket(addQnt);
-      itemBasket.classList.add("basket-active");
     } else {
       addQnt += qnt;
       shoppingCartQnt.innerText = addQnt;
-      const itemBasket = document.getElementById("basket");
-      if (itemBasket) {
-        updateItemBasket(addQnt);
-      }
     }
+
+    let itemBasket = document.getElementById("basket");
+    if (!itemBasket) {
+      itemBasket = document.createElement("dialog");
+      itemBasket.id = "basket";
+      itemBasket.className = "item-basket";
+      document.querySelector(".right-nav").appendChild(itemBasket);
+    }
+
+    updateItemBasket(addQnt);
+    itemBasket.classList.add("basket-active");
   }
 });
 
