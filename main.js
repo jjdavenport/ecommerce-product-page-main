@@ -32,7 +32,6 @@ function desktopThumbnail() {
 function lightboxThumbnail() {
   const lightboxThumbnails = document.querySelectorAll(".lightbox-thumbnail");
   const lightboxMainImg = document.getElementById("lightbox-main-img");
-
   lightboxThumbnails.forEach((t, i) => {
     t.addEventListener("click", () => {
       lightboxMainImg.src = images[i];
@@ -59,6 +58,10 @@ function thumbnailButton() {
   const lightboxThumbnails = document.querySelectorAll(".lightbox-thumbnail");
   lightboxThumbnails.forEach((t, i) => {
     t.classList.toggle("thumbnail-active", i === currentIndex);
+    const thumbnailImg = t.querySelector(".lightbox-thumbnail-img");
+    if (thumbnailImg) {
+      thumbnailImg.classList.toggle("thumbnail-img-active", i === currentIndex);
+    }
   });
 }
 
