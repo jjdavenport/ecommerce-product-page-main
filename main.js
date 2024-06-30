@@ -12,19 +12,25 @@ function desktopThumbnail() {
   desktopThumbnails.forEach((t, i) => {
     t.addEventListener("click", () => {
       desktopMainImg.src = images[i];
-      desktopThumbnails.forEach((t) => {
-        t.classList.remove("thumbnail-active");
+      desktopThumbnails.forEach((thumbnail) => {
+        thumbnail.classList.remove("thumbnail-active");
+        const thumbnailImg = thumbnail.querySelector(".thumbnail-img");
+        if (thumbnailImg) {
+          thumbnailImg.classList.remove("thumbnail-img-active");
+        }
       });
       t.classList.add("thumbnail-active");
+      const thumbnailImg = t.querySelector(".thumbnail-img");
+      if (thumbnailImg) {
+        thumbnailImg.classList.add("thumbnail-img-active");
+      }
     });
   });
   desktopThumbnails[0].click();
 }
 
 function lightboxThumbnail() {
-  const lightboxThumbnails = document.querySelectorAll(
-    ".lightbox-thumbnail-img"
-  );
+  const lightboxThumbnails = document.querySelectorAll(".lightbox-thumbnail");
   const lightboxMainImg = document.getElementById("lightbox-main-img");
 
   lightboxThumbnails.forEach((t, i) => {
@@ -32,16 +38,25 @@ function lightboxThumbnail() {
       lightboxMainImg.src = images[i];
       currentIndex = i;
       thumbnailButton();
+      lightboxThumbnails.forEach((thumbnail) => {
+        thumbnail.classList.remove("thumbnail-active");
+        const thumbnailImg = thumbnail.querySelector(".lightbox-thumbnail-img");
+        if (thumbnailImg) {
+          thumbnailImg.classList.remove("thumbnail-img-active");
+        }
+      });
+      t.classList.add("thumbnail-active");
+      const thumbnailImg = t.querySelector(".lightbox-thumbnail-img");
+      if (thumbnailImg) {
+        thumbnailImg.classList.add("thumbnail-img-active");
+      }
     });
   });
-
   lightboxThumbnails[0].click();
 }
 
 function thumbnailButton() {
-  const lightboxThumbnails = document.querySelectorAll(
-    ".lightbox-thumbnail-img"
-  );
+  const lightboxThumbnails = document.querySelectorAll(".lightbox-thumbnail");
   lightboxThumbnails.forEach((t, i) => {
     t.classList.toggle("thumbnail-active", i === currentIndex);
   });
@@ -339,7 +354,7 @@ function itemBasket(addQnt) {
     basket = document.createElement("dialog");
     basket.id = "basket";
     basket.className = "item-basket";
-    document.querySelector(".right-nav").appendChild(basket); // Append to right-nav
+    document.querySelector(".right-nav").appendChild(basket);
   }
   basket.innerHTML = `<span class="cart">Cart</span> 
   <div class="order-item">
@@ -372,7 +387,7 @@ function emptyBasket() {
   </div>`;
   empty.id = "basket";
   empty.className = "empty-basket";
-  document.querySelector(".right-nav").appendChild(empty); // Append to right-nav
+  document.querySelector(".right-nav").appendChild(empty);
 }
 
 function deleteItemBasket() {
@@ -520,7 +535,6 @@ addCartBtn.addEventListener("click", () => {
 
   if (qnt >= 1) {
     const emptyBasket = document.querySelector(".empty-basket.basket-active");
-
     if (emptyBasket) {
       addQnt += qnt;
       shoppingCartQnt.innerText = addQnt;
@@ -530,7 +544,6 @@ addCartBtn.addEventListener("click", () => {
       addQnt += qnt;
       shoppingCartQnt.innerText = addQnt;
     }
-
     let itemBasket = document.getElementById("basket");
     if (!itemBasket) {
       itemBasket = document.createElement("dialog");
@@ -538,9 +551,10 @@ addCartBtn.addEventListener("click", () => {
       itemBasket.className = "item-basket";
       document.querySelector(".right-nav").appendChild(itemBasket);
     }
-
     updateItemBasket(addQnt);
-    itemBasket.classList.add("basket-active");
+    if (emptyBasket) {
+      itemBasket.classList.add("basket-active");
+    }
   }
 });
 
