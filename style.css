@@ -203,6 +203,7 @@ dialog {
   width: 2.5rem;
   height: 2.5rem;
   border-radius: 50%;
+  z-index: 999;
 }
 
 #right-button {
@@ -303,6 +304,7 @@ dialog {
   top: 8%;
   left: 2.5%;
   border-radius: 0.625rem;
+  z-index: 999;
 }
 
 .cart {
@@ -313,6 +315,7 @@ dialog {
 
 .order-item {
   padding: 2rem;
+  gap: 1rem;
   display: flex;
   flex-direction: column;
   flex: 1;
@@ -337,14 +340,22 @@ dialog {
   gap: 0.5rem;
 }
 
+#total-price {
+  font-weight: 700;
+  color: hsl(0, 0%, 0%);
+}
+
+.order-details span:first-child,
+.order-details span:nth-child(2) {
+  font-size: 1.125rem;
+  font-weight: 400;
+  color: hsl(219, 9%, 45%);
+}
+
 .item-details {
   display: flex;
   align-items: center;
   gap: 1rem;
-}
-
-.total-price {
-  font-weight: 700;
 }
 
 #delete-button:hover {
@@ -391,6 +402,10 @@ dialog {
   flex: 1;
   justify-content: center;
   align-items: center;
+}
+
+.mobile-main-img {
+  position: relative;
 }
 
 #main-img {

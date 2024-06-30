@@ -348,7 +348,7 @@ function itemBasket(addQnt) {
       <img class="item-img" src="./images/image-product-1-thumbnail.jpg" alt="white and beige sneakers">
       <div class="order-details">
       <span>Fall Limited Edition Sneakers</span>
-      <span>$125.00 X ${addQnt} <span class="total-price">$${totalPrice}<span></span> 
+            <span>$125.00 x ${addQnt}<span id="total-price"> $${totalPrice}</span></span>
       </div>
       </div>
     <button id="delete-button">
@@ -518,10 +518,29 @@ addCartBtn.addEventListener("click", () => {
   let addQnt = parseInt(shoppingCartQnt.innerText) || 0;
   let qnt = parseInt(quantity.innerText) || 0;
   if (qnt >= 1) {
-    addQnt += qnt;
-    shoppingCartQnt.innerText = addQnt;
-    deleteEmptyBasket();
-    updateItemBasket(addQnt);
+    const emptyBasket = document.querySelector(".empty-basket.basket-active");
+    if (emptyBasket) {
+      addQnt += qnt;
+      shoppingCartQnt.innerText = addQnt;
+      emptyBasket.classList.remove("basket-active");
+      deleteEmptyBasket();
+      let itemBasket = document.getElementById("basket");
+      if (!itemBasket) {
+        itemBasket = document.createElement("dialog");
+        itemBasket.id = "basket";
+        itemBasket.className = "item-basket";
+        document.querySelector("main").appendChild(itemBasket);
+      }
+      updateItemBasket(addQnt);
+      itemBasket.classList.add("basket-active");
+    } else {
+      addQnt += qnt;
+      shoppingCartQnt.innerText = addQnt;
+      const itemBasket = document.getElementById("basket");
+      if (itemBasket) {
+        updateItemBasket(addQnt);
+      }
+    }
   }
 });
 
@@ -548,6 +567,7 @@ document.addEventListener("click", (e) => {
   if (target.id === "lightbox-button" || target.closest("#lightbox-button")) {
     lightboxBtn();
   }
+  getCheckoutBtn();
 });
 
 function shoppingCartClick() {
@@ -565,7 +585,6 @@ function shoppingCartClick() {
   const newBasket = document.getElementById("basket");
   if (newBasket) {
     newBasket.classList.toggle("basket-active");
-    getCheckoutBtn();
   }
 }
 
