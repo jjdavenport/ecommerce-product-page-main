@@ -194,10 +194,8 @@ dialog {
   position: relative;
 }
 
-#left-button {
-  position: absolute;
-  top: 40%;
-  left: 5%;
+#left-button,
+#right-button {
   display: grid;
   place-content: center;
   background: hsl(0, 0%, 100%);
@@ -205,18 +203,17 @@ dialog {
   height: 2.5rem;
   border-radius: 50%;
   z-index: 998;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+#left-button {
+  left: 1rem;
 }
 
 #right-button {
-  position: absolute;
-  top: 40%;
-  left: 85%;
-  display: grid;
-  place-content: center;
-  background: hsl(0, 0%, 100%);
-  width: 2.5rem;
-  height: 2.5rem;
-  border-radius: 50%;
+  right: 1rem;
 }
 
 #left-button:hover,
@@ -505,6 +502,7 @@ dialog {
     display: flex;
     justify-content: space-around;
     max-width: 40vw;
+    gap: 1rem;
     margin: 0 auto;
   }
   #lightbox-close-button {
@@ -520,16 +518,27 @@ dialog {
     width: 40vw;
     margin: auto;
   }
+  .relative {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+  }
+  #left-button,
+  #right-button {
+    display: grid;
+    place-content: center;
+    background: hsl(0, 0%, 100%);
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+  }
   #left-button {
-    position: absolute;
-    z-index: 999;
-    top: 40%;
-    left: -5%;
+    left: -1rem;/
   }
   #right-button {
-    position: absolute;
-    top: 40%;
-    left: 95%;
+    right: -1rem; 
   }
   .thumbnail-active {
     border-radius: 0.625rem;
@@ -542,7 +551,7 @@ dialog {
     flex-direction: row;
   }
   .lightbox-thumbnail {
-    width: 8vw;
+    width: 7vw;
     border-radius: 0.625rem;
     background: hsl(0, 0%, 100%);
   }

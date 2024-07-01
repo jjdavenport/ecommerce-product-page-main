@@ -92,63 +92,63 @@ function lightboxBtn() {
         9.62l-4.595 4.597-2.122-2.122L4.878 7.5.282 2.904 2.404.782l4.595 
         4.596L11.596.782Z" fill="#69707D" fill-rule="evenodd"/></svg>
         </button>
-        <button id="left-button" class="arrow-button">
-               <svg width="12" height="18" xmlns="http://www.w3.org/2000/svg">
-            <path
-              class="path"
-              d="M11 1 3 9l8 8"
-              stroke="#1D2026"
-              stroke-width="3"
-              fill="none"
-              fill-rule="evenodd"
-            />
-          </svg>
-        </button>
-        <img src="./images/image-product-1.jpg" alt="" id="lightbox-main-img"/>
-        <button id="right-button"  class="arrow-button">
-               <svg width="13" height="18" xmlns="http://www.w3.org/2000/svg">
-            <path
-              class="path"
-              d="m2 1 8 8-8 8"
-              stroke="#1D2026"
-              stroke-width="3"
-              fill="none"
-              fill-rule="evenodd"
-            />
-          </svg>
-        </button>
-        <div>
+        <div class="relative">
+          <button id="left-button" class="arrow-button">
+            <svg width="12" height="18" xmlns="http://www.w3.org/2000/svg">
+              <path
+                class="path"
+                d="M11 1 3 9l8 8"
+                stroke="#1D2026"
+                stroke-width="3"
+                fill="none"
+                fill-rule="evenodd"
+              />
+            </svg>
+          </button>
+          <img src="./images/image-product-1.jpg" alt="" id="lightbox-main-img"/>
+          <button id="right-button"  class="arrow-button">
+            <svg width="13" height="18" xmlns="http://www.w3.org/2000/svg">
+              <path
+                class="path"
+                d="m2 1 8 8-8 8"
+                stroke="#1D2026"
+                stroke-width="3"
+                fill="none"
+                fill-rule="evenodd"
+              />
+            </svg>
+          </button>
+        </div>
         <div class="lightbox-thumbnail-row">
-    <button class="lightbox-thumbnail">
-      <img
-      class="lightbox-thumbnail-img"
-        src="./images/image-product-1-thumbnail.jpg"
-        alt=""
-      />
-    </button>
-    <button class="lightbox-thumbnail">
-      <img
-      class="lightbox-thumbnail-img"
-        src="./images/image-product-2-thumbnail.jpg"
-        alt=""
-      />
-    </button>
-    <button class="lightbox-thumbnail">
-      <img
-      class="lightbox-thumbnail-img"
-        src="./images/image-product-3-thumbnail.jpg"
-        alt=""
-      />
-    </button>
-    <button class="lightbox-thumbnail">
-      <img
-      class="lightbox-thumbnail-img"
-        src="./images/image-product-4-thumbnail.jpg"
-        alt=""
-      />
-    </button>
-    </div>
-  </div>`;
+          <button class="lightbox-thumbnail">
+            <img
+              class="lightbox-thumbnail-img"
+              src="./images/image-product-1-thumbnail.jpg"
+              alt=""
+            />
+          </button>
+          <button class="lightbox-thumbnail">
+            <img
+              class="lightbox-thumbnail-img"
+              src="./images/image-product-2-thumbnail.jpg"
+              alt=""
+            />
+          </button>
+          <button class="lightbox-thumbnail">
+            <img
+              class="lightbox-thumbnail-img"
+              src="./images/image-product-3-thumbnail.jpg"
+              alt=""
+            />
+          </button>
+          <button class="lightbox-thumbnail">
+            <img
+              class="lightbox-thumbnail-img"
+              src="./images/image-product-4-thumbnail.jpg"
+              alt=""
+            />
+          </button>
+        </div>`;
     lightboxCloseBtn();
     lightboxThumbnail();
     document.body.classList.add("no-scroll");
