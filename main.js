@@ -352,29 +352,36 @@ function desktopLightbox() {
 function itemBasket(addQnt) {
   const price = 125.0;
   const totalPrice = price * addQnt;
-  let basket = document.getElementById("basket");
+  const basketId = "basket";
+  const mobile = window.innerWidth < 845;
+  const checkWindow = document.querySelector(mobile ? ".mobile" : ".right-nav");
+  let basket = document.getElementById(basketId);
   if (!basket) {
     basket = document.createElement("dialog");
-    basket.id = "basket";
+    basket.id = basketId;
     basket.className = "item-basket";
-    document.querySelector(".right-nav").appendChild(basket);
   }
-  basket.innerHTML = `<span class="cart">Cart</span> 
-  <div class="order-item">
-    <div class="item">
-      <div class="item-details">
-        <img class="item-img" src="./images/image-product-1-thumbnail.jpg" alt="white and beige sneakers">
-        <div class="order-details">
-          <span>Fall Limited Edition Sneakers</span>
-          <span>$125.00 x ${addQnt}<span id="total-price"> $${totalPrice}</span></span>
-        </div>
-      </div>
-      <button id="delete-button">
-        <img src="./images/icon-delete.svg" alt="rubbish bin / trash can" />
-      </button>
-    </div>
-    <button id="checkout-button">Checkout</button>
-  </div>`;
+  if (basket.parentElement !== checkWindow) {
+    checkWindow.appendChild(basket);
+  }
+  basket.innerHTML = `
+      <span class="cart">Cart</span>
+      <div class="order-item">
+          <div class="item">
+              <div class="item-details">
+                  <img class="item-img" src="./images/image-product-1-thumbnail.jpg" alt="white and beige sneakers">
+                  <div class="order-details">
+                      <span>Fall Limited Edition Sneakers</span>
+                      <span>$125.00 x ${addQnt} <span id="total-price"> $${totalPrice}</span></span>
+                  </div>
+              </div>
+              <button id="delete-button">
+                  <img src="./images/icon-delete.svg" alt="rubbish bin / trash can">
+              </button>
+          </div>
+          <button id="checkout-button">Checkout</button>
+      </div>`;
+
   deleteItemBasket();
 }
 
@@ -383,14 +390,23 @@ function updateItemBasket(addQnt) {
 }
 
 function emptyBasket() {
-  const empty = document.createElement("dialog");
-  empty.innerHTML = `<div class="empty">
-    <span>Cart</span>
-    <span>Your cart is empty.</span>
-  </div>`;
-  empty.id = "basket";
-  empty.className = "empty-basket";
-  document.querySelector(".right-nav").appendChild(empty);
+  const basketId = "basket";
+  const mobile = window.innerWidth < 845;
+  const checkWindow = document.querySelector(mobile ? ".mobile" : ".right-nav");
+  let basket = document.getElementById(basketId);
+  if (!basket) {
+    basket = document.createElement("dialog");
+    basket.id = basketId;
+    basket.className = "empty-basket";
+  }
+  if (basket.parentElement !== checkWindow) {
+    checkWindow.appendChild(basket);
+  }
+  basket.innerHTML = `
+      <div class="empty">
+          <span>Cart</span>
+          <span>Your cart is empty.</span>
+      </div>`;
 }
 
 function deleteItemBasket() {
