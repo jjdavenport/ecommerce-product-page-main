@@ -82,73 +82,77 @@ function lightboxBtn() {
     const createOverlay = document.createElement("div");
     createOverlay.id = "lightbox-overlay";
     document.body.appendChild(createOverlay);
+
     const createDialog = document.createElement("dialog");
     document.body.appendChild(createDialog);
     createDialog.className = "lightbox-active";
     createDialog.id = "lightbox";
-    createDialog.innerHTML = `<button id="lightbox-close-button">
+    createDialog.innerHTML = `
+      <button id="lightbox-close-button" aria-label="Close Lightbox">
         <svg class="close-svg" width="14" height="15" xmlns="http://www.w3.org/2000/svg">
-        <path class="close-path" d="m11.596.782 2.122 2.122L9.12 7.499l4.597 4.597-2.122 2.122L7 
-        9.62l-4.595 4.597-2.122-2.122L4.878 7.5.282 2.904 2.404.782l4.595 
-        4.596L11.596.782Z" fill="#69707D" fill-rule="evenodd"/></svg>
+          <path class="close-path" d="m11.596.782 2.122 2.122L9.12 7.499l4.597 4.597-2.122 2.122L7 
+          9.62l-4.595 4.597-2.122-2.122L4.878 7.5.282 2.904 2.404.782l4.595 
+          4.596L11.596.782Z" fill="#69707D" fill-rule="evenodd"/>
+        </svg>
+      </button>
+      <div class="relative">
+        <button id="left-button" class="arrow-button" aria-label="Previous Image">
+          <svg width="12" height="18" xmlns="http://www.w3.org/2000/svg">
+            <path
+              class="path"
+              d="M11 1 3 9l8 8"
+              stroke="#1D2026"
+              stroke-width="3"
+              fill="none"
+              fill-rule="evenodd"
+            />
+          </svg>
         </button>
-        <div class="relative">
-          <button id="left-button" class="arrow-button">
-            <svg width="12" height="18" xmlns="http://www.w3.org/2000/svg">
-              <path
-                class="path"
-                d="M11 1 3 9l8 8"
-                stroke="#1D2026"
-                stroke-width="3"
-                fill="none"
-                fill-rule="evenodd"
-              />
-            </svg>
-          </button>
-          <img src="./images/image-product-1.jpg" alt="" id="lightbox-main-img"/>
-          <button id="right-button"  class="arrow-button">
-            <svg width="13" height="18" xmlns="http://www.w3.org/2000/svg">
-              <path
-                class="path"
-                d="m2 1 8 8-8 8"
-                stroke="#1D2026"
-                stroke-width="3"
-                fill="none"
-                fill-rule="evenodd"
-              />
-            </svg>
-          </button>
-        </div>
-        <div class="lightbox-thumbnail-row">
-          <button class="lightbox-thumbnail">
-            <img
-              class="lightbox-thumbnail-img"
-              src="./images/image-product-1-thumbnail.jpg"
-              alt=""
+        <img src="./images/image-product-1.jpg" alt="Product Image" id="lightbox-main-img"/>
+        <button id="right-button" class="arrow-button" aria-label="Next Image">
+          <svg width="13" height="18" xmlns="http://www.w3.org/2000/svg">
+            <path
+              class="path"
+              d="m2 1 8 8-8 8"
+              stroke="#1D2026"
+              stroke-width="3"
+              fill="none"
+              fill-rule="evenodd"
             />
-          </button>
-          <button class="lightbox-thumbnail">
-            <img
-              class="lightbox-thumbnail-img"
-              src="./images/image-product-2-thumbnail.jpg"
-              alt=""
-            />
-          </button>
-          <button class="lightbox-thumbnail">
-            <img
-              class="lightbox-thumbnail-img"
-              src="./images/image-product-3-thumbnail.jpg"
-              alt=""
-            />
-          </button>
-          <button class="lightbox-thumbnail">
-            <img
-              class="lightbox-thumbnail-img"
-              src="./images/image-product-4-thumbnail.jpg"
-              alt=""
-            />
-          </button>
-        </div>`;
+          </svg>
+        </button>
+      </div>
+      <div class="lightbox-thumbnail-row">
+        <button class="lightbox-thumbnail" aria-label="Thumbnail 1">
+          <img
+            class="lightbox-thumbnail-img"
+            src="./images/image-product-1-thumbnail.jpg"
+            alt="Thumbnail 1"
+          />
+        </button>
+        <button class="lightbox-thumbnail" aria-label="Thumbnail 2">
+          <img
+            class="lightbox-thumbnail-img"
+            src="./images/image-product-2-thumbnail.jpg"
+            alt="Thumbnail 2"
+          />
+        </button>
+        <button class="lightbox-thumbnail" aria-label="Thumbnail 3">
+          <img
+            class="lightbox-thumbnail-img"
+            src="./images/image-product-3-thumbnail.jpg"
+            alt="Thumbnail 3"
+          />
+        </button>
+        <button class="lightbox-thumbnail" aria-label="Thumbnail 4">
+          <img
+            class="lightbox-thumbnail-img"
+            src="./images/image-product-4-thumbnail.jpg"
+            alt="Thumbnail 4"
+          />
+        </button>
+      </div>`;
+
     lightboxCloseBtn();
     lightboxThumbnail();
     document.body.classList.add("no-scroll");
@@ -191,35 +195,26 @@ function rightButton() {
 function desktopNav() {
   const createNav = document.createElement("nav");
   createNav.className = "desktop-nav";
+  createNav.setAttribute("aria-label", "Main Navigation");
   createNav.innerHTML = `
-  <div class="left-nav">
-    <img src="./images/logo.svg" alt="sneakers" />
-    <ul>
-      <a href="#">Collections</a>
-      <a href="#">Men</a>
-      <a href="#">Women</a>
-      <a href="#">About</a>
-      <a href="#">Contact</a>
-    </ul>
+    <div class="left-nav">
+      <img src="./images/logo.svg" alt="Sneakers logo" />
+      <ul>
+        <a href="#">Collections</a>
+        <a href="#">Men</a>
+        <a href="#">Women</a>
+        <a href="#">About</a>
+        <a href="#">Contact</a>
+      </ul>
     </div>
     <div class="right-nav">
-    <button id="shopping-cart-button">
-      <svg width="22" height="20" xmlns="http://www.w3.org/2000/svg">
-      <path d="M20.925 3.641H3.863L3.61.816A.896.896 0 0 0 2.717 0H.897a.896.896 0 1 0 0 
-      1.792h1l1.031 11.483c.073.828.52 1.726 1.291 2.336C2.83 17.385 4.099 20 6.359 
-      20c1.875 0 3.197-1.87 2.554-3.642h4.905c-.642 1.77.677 3.642 2.555 3.642a2.72 
-      2.72 0 0 0 2.717-2.717 2.72 2.72 0 0 0-2.717-2.717H6.365c-.681 
-      0-1.274-.41-1.53-1.009l14.321-.842a.896.896 0 0 0 .817-.677l1.821-7.283a.897.897 
-      0 0 0-.87-1.114ZM6.358 18.208a.926.926 0 0 1 0-1.85.926.926 0 0 1 0 1.85Zm10.015 
-      0a.926.926 0 0 1 0-1.85.926.926 0 0 1 0 1.85Zm2.021-7.243-13.8.81-.57-6.341h15.753l-1.383 
-      5.53Z" fill="#69707D" fill-rule="nonzero"/></svg>
-      <span id="shopping-cart-quantity"></span>
-    </button>
-    <img
-      src="./images/image-avatar.png"
-      alt="profile picture"
-      class="profile-picture"
-    />
+      <button id="shopping-cart-button" aria-label="Shopping Cart">
+        <svg width="22" height="20" xmlns="http://www.w3.org/2000/svg">
+          <path d="M20.925 3.641H3.863L3.61.816A.896.896 0 0 0 2.717 0H.897a.896.896 0 1 0 0 1.792h1l1.031 11.483c.073.828.52 1.726 1.291 2.336C2.83 17.385 4.099 20 6.359 20c1.875 0 3.197-1.87 2.554-3.642h4.905c-.642 1.77.677 3.642 2.555 3.642a2.72 2.72 0 0 0 2.717-2.717 2.72 2.72 0 0 0-2.717-2.717H6.365c-.681 0-1.274-.41-1.53-1.009l14.321-.842a.896.896 0 0 0 .817-.677l1.821-7.283a.897.897 0 0 0-.87-1.114ZM6.358 18.208a.926.926 0 0 1 0-1.85.926.926 0 0 1 0 1.85Zm10.015 0a.926.926 0 0 1 0-1.85.926.926 0 0 1 0 1.85Zm2.021-7.243-13.8.81-.57-6.341h15.753l-1.383 5.53Z" fill="#69707D" fill-rule="nonzero"/>
+        </svg>
+        <span id="shopping-cart-quantity" aria-live="polite"></span>
+      </button>
+      <img src="./images/image-avatar.png" alt="Profile Picture" class="profile-picture" />
     </div>`;
   return createNav;
 }
@@ -227,79 +222,73 @@ function desktopNav() {
 function mobileNav() {
   const createNav = document.createElement("nav");
   createNav.id = "mobile-nav";
-  createNav.innerHTML = `   <section class="left-nav">
-          <button id="menu-button">
-            <img src="./images/icon-menu.svg" alt="three horizontal lines" />
-          </button>
-          <img src="./images/logo.svg" alt="sneakers" />
-          <dialog id="nav">
-            <button id="close-button">
-              <img src="./images/icon-close.svg" alt="x" />
-            </button>
-            <ul>
-              <a href="#">Collections</a>
-              <a href="#">Men</a>
-              <a href="#">Women</a>
-              <a href="#">About</a>
-              <a href="#">Contact</a>
-            </ul>
-          </dialog>
-        </section>
-        <section class="right-nav">
-          <button id="shopping-cart-button">
-            <svg width="22" height="20" xmlns="http://www.w3.org/2000/svg">
-            <path d="M20.925 3.641H3.863L3.61.816A.896.896 0 0 0 2.717 0H.897a.896.896 
-            0 1 0 0 1.792h1l1.031 11.483c.073.828.52 1.726 1.291 2.336C2.83 17.385 4.099 
-            20 6.359 20c1.875 0 3.197-1.87 2.554-3.642h4.905c-.642 1.77.677 3.642 2.555 
-            3.642a2.72 2.72 0 0 0 2.717-2.717 2.72 2.72 0 0 0-2.717-2.717H6.365c-.681 
-            0-1.274-.41-1.53-1.009l14.321-.842a.896.896 0 0 0 .817-.677l1.821-7.283a.897.897 
-            0 0 0-.87-1.114ZM6.358 18.208a.926.926 0 0 1 0-1.85.926.926 0 0 1 0 1.85Zm10.015 
-            0a.926.926 0 0 1 0-1.85.926.926 0 0 1 0 1.85Zm2.021-7.243-13.8.81-.57-6.341h15.753l-1.383 
-            5.53Z" fill="#69707D" fill-rule="nonzero"/></svg>
-            <span id="shopping-cart-quantity"></span>
-          </button>
-          <img
-            src="./images/image-avatar.png"
-            alt="profile picture"
-            class="profile-picture"
-          />
-        </section>`;
+  createNav.setAttribute("aria-label", "Mobile Navigation");
+  createNav.innerHTML = `
+    <section class="left-nav">
+      <button id="menu-button" aria-label="Open Menu">
+        <img src="./images/icon-menu.svg" alt="Open Menu" />
+      </button>
+      <img src="./images/logo.svg" alt="Sneakers logo" />
+      <dialog id="nav">
+        <button id="close-button" aria-label="Close Menu">
+          <img src="./images/icon-close.svg" alt="Close Menu" />
+        </button>
+        <ul>
+          <li><a href="#">Collections</a></li>
+          <li><a href="#">Men</a></li>
+          <li><a href="#">Women</a></li>
+          <li><a href="#">About</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </dialog>
+    </section>
+    <section class="right-nav">
+      <button id="shopping-cart-button" aria-label="Shopping Cart">
+        <svg width="22" height="20" xmlns="http://www.w3.org/2000/svg">
+          <path d="M20.925 3.641H3.863L3.61.816A.896.896 0 0 0 2.717 0H.897a.896.896 0 1 0 0 1.792h1l1.031 11.483c.073.828.52 1.726 1.291 2.336C2.83 17.385 4.099 20 6.359 20c1.875 0 3.197-1.87 2.554-3.642h4.905c-.642 1.77.677 3.642 2.555 3.642a2.72 2.72 0 0 0 2.717-2.717 2.72 2.72 0 0 0-2.717-2.717H6.365c-.681 0-1.274-.41-1.53-1.009l14.321-.842a.896.896 0 0 0 .817-.677l1.821-7.283a.897.897 0 0 0-.87-1.114ZM6.358 18.208a.926.926 0 0 1 0-1.85.926.926 0 0 1 0 1.85Zm10.015 0a.926.926 0 0 1 0-1.85.926.926 0 0 1 0 1.85Zm2.021-7.243-13.8.81-.57-6.341h15.753l-1.383 5.53Z" fill="#69707D" fill-rule="nonzero"/>
+        </svg>
+        <span id="shopping-cart-quantity" aria-live="polite"></span>
+      </button>
+      <img src="./images/image-avatar.png" alt="Profile Picture" class="profile-picture" />
+    </section>`;
   return createNav;
 }
 
 function mobileLightbox() {
   const createSection = document.createElement("section");
   createSection.className = "mobile";
-  createSection.innerHTML = `    <button id="left-button" class="arrow-button">
-          <svg width="12" height="18" xmlns="http://www.w3.org/2000/svg">
-            <path
-              class="path"
-              d="M11 1 3 9l8 8"
-              stroke="#1D2026"
-              stroke-width="3"
-              fill="none"
-              fill-rule="evenodd"
-            />
-          </svg>
-        </button>
-        <img
-          id="main-img"
-          class="main-img"
-          src="./images/image-product-1.jpg"
-          alt="white and beige sneakers"
+  createSection.innerHTML = `
+    <button id="left-button" class="arrow-button" aria-label="Previous Image">
+      <svg width="12" height="18" xmlns="http://www.w3.org/2000/svg">
+        <path
+          class="path"
+          d="M11 1 3 9l8 8"
+          stroke="#1D2026"
+          stroke-width="3"
+          fill="none"
+          fill-rule="evenodd"
         />
-        <button id="right-button" class="arrow-button">
-          <svg width="13" height="18" xmlns="http://www.w3.org/2000/svg">
-            <path
-              class="path"
-              d="m2 1 8 8-8 8"
-              stroke="#1D2026"
-              stroke-width="3"
-              fill="none"
-              fill-rule="evenodd"
-            />
-          </svg>
-        </button>`;
+      </svg>
+    </button>
+    <img
+      id="main-img"
+      class="main-img"
+      src="./images/image-product-1.jpg"
+      alt="White and beige sneakers"
+    />
+    <button id="right-button" class="arrow-button" aria-label="Next Image">
+      <svg width="13" height="18" xmlns="http://www.w3.org/2000/svg">
+        <path
+          class="path"
+          d="m2 1 8 8-8 8"
+          stroke="#1D2026"
+          stroke-width="3"
+          fill="none"
+          fill-rule="evenodd"
+        />
+      </svg>
+    </button>`;
+
   return createSection;
 }
 
@@ -307,37 +296,37 @@ function desktopLightbox() {
   const createSection = document.createElement("section");
   createSection.className = "desktop";
   createSection.innerHTML = `
-    <button id="lightbox-button">
+    <button id="lightbox-button" aria-label="Expand Image">
       <img
         id="main-img"
         class="main-img"
         src="./images/image-product-1.jpg"
-        alt="white and beige sneakers"
+        alt="White and beige sneakers"
       />
     </button>
     <div class="thumbnail-row">
-      <button class="desktop-thumbnail">
+      <button class="desktop-thumbnail" aria-label="Thumbnail 1">
         <img
           class="thumbnail-img"
           src="./images/image-product-1-thumbnail.jpg"
           alt="Thumbnail 1"
         />
       </button>
-      <button class="desktop-thumbnail">
+      <button class="desktop-thumbnail" aria-label="Thumbnail 2">
         <img
           class="thumbnail-img"
           src="./images/image-product-2-thumbnail.jpg"
           alt="Thumbnail 2"
         />
       </button>
-      <button class="desktop-thumbnail">
+      <button class="desktop-thumbnail" aria-label="Thumbnail 3">
         <img
           class="thumbnail-img"
           src="./images/image-product-3-thumbnail.jpg"
           alt="Thumbnail 3"
         />
       </button>
-      <button class="desktop-thumbnail">
+      <button class="desktop-thumbnail" aria-label="Thumbnail 4">
         <img
           class="thumbnail-img"
           src="./images/image-product-4-thumbnail.jpg"
@@ -346,6 +335,7 @@ function desktopLightbox() {
       </button>
     </div>
   `;
+
   return createSection;
 }
 
@@ -361,25 +351,26 @@ function itemBasket(addQnt) {
     basket.id = basketId;
     basket.className = "item-basket";
   }
+
   if (basket.parentElement !== checkWindow) {
     checkWindow.appendChild(basket);
   }
   basket.innerHTML = `
-      <span class="cart">Cart</span>
+      <span class="cart" aria-label="Cart">Cart</span>
       <div class="order-item">
           <div class="item">
               <div class="item-details">
-                  <img class="item-img" src="./images/image-product-1-thumbnail.jpg" alt="white and beige sneakers">
+                  <img class="item-img" src="./images/image-product-1-thumbnail.jpg" alt="Thumbnail of white and beige sneakers">
                   <div class="order-details">
-                      <span>Fall Limited Edition Sneakers</span>
-                      <span>$125.00 x ${addQnt} <span id="total-price"> $${totalPrice}</span></span>
+                      <span aria-label="Product Name">Fall Limited Edition Sneakers</span>
+                      <span aria-label="Price"> $125.00 x ${addQnt} <span id="total-price"> $${totalPrice}</span></span>
                   </div>
               </div>
-              <button id="delete-button">
-                  <img src="./images/icon-delete.svg" alt="rubbish bin / trash can">
+              <button id="delete-button" aria-label="Delete Item">
+                  <img src="./images/icon-delete.svg" alt="Icon of a rubbish bin or trash can">
               </button>
           </div>
-          <button id="checkout-button">Checkout</button>
+          <button id="checkout-button" aria-label="Checkout">Checkout</button>
       </div>`;
 
   deleteItemBasket();
@@ -404,8 +395,8 @@ function emptyBasket() {
   }
   basket.innerHTML = `
       <div class="empty">
-          <span>Cart</span>
-          <span>Your cart is empty.</span>
+          <span aria-label="Cart">Cart</span>
+          <span aria-label="Empty Cart Message">Your cart is empty.</span>
       </div>`;
 }
 
