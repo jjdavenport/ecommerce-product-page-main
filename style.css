@@ -456,7 +456,7 @@ dialog {
   overflow: hidden;
 }
 
-@media screen and (width >= 52.8125rem) {
+@media screen and (width >= 43.75rem) and (height >= 28.75rem) {
   .order-item {
     padding: 1rem;
   }
@@ -486,17 +486,17 @@ dialog {
     left: 50%;
     transform: translate(-50%, -50%);
     background: none;
-    gap: 1.5rem;
+    gap: 1rem;
     z-index: 999;
   }
   #basket {
     position: absolute;
-    top: 80px;
-    left: -250px;
+    top: 5rem;
+    left: -18.75rem;
     height: 15.625rem;
     width: 23.75rem;
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1), 5px 0 10px rgba(0, 0, 0, 0.1),
-      -5px 0 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 .3125rem .625rem rgba(0, 0, 0, 0.1), .3125rem 0 .625rem rgba(0, 0, 0, 0.1),
+      -0.3125rem 0 .625rem rgba(0, 0, 0, 0.1);
   }
   .order {
     display: grid;
@@ -506,7 +506,7 @@ dialog {
   .lightbox-thumbnail-row {
     display: flex;
     justify-content: space-around;
-    max-width: 40vw;
+    max-width: 35vw;
     gap: 1rem;
     margin: 0 auto;
   }
@@ -520,7 +520,7 @@ dialog {
   #lightbox-main-img {
     position: relative;
     border-radius: 0.75rem;
-    width: 40vw;
+    width: 35vw;
     margin: auto;
   }
   .relative {
@@ -577,15 +577,12 @@ dialog {
     display: block;
     position: fixed;
   }
-  .lightbox img {
-    max-width: 50vw;
-  }
   main {
-    padding: 1rem;
+    padding: clamp(0.5rem, 0.1rem + 1vw, 1rem);
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: 0.1fr 1fr;
-    column-gap: 1rem;
+    column-gap: 0;
   }
   .desktop-nav {
     display: flex;
@@ -593,8 +590,8 @@ dialog {
     grid-row: 1 / 1;
     grid-column: 1 / 3;
     border-bottom: 0.0625rem solid hsl(220, 14%, 75%, 0.2);
-    margin-left: 4rem;
-    margin-right: 4rem;
+    margin-left: clamp(0.5rem, -2.3rem + 7vw, 4rem);
+    margin-right: clamp(0.5rem, -2.3rem + 7vw, 4rem);
   }
   .desktop {
     gap: 1rem;
@@ -619,7 +616,7 @@ dialog {
     display: flex;
   }
   .desktop-nav img:first-child {
-    border-bottom: 0.25rem solid transparent;
+    border-bottom: 0.75rem solid transparent;
   }
   .desktop-nav ul {
     height: 100%;
@@ -641,7 +638,7 @@ dialog {
   }
   .left-nav {
     display: flex;
-    gap: 3rem;
+    gap: clamp(0.5rem, -1.5rem + 5vw, 3rem);
   }
   .right-nav img:nth-child(2) {
     height: 2.8125rem;
@@ -675,8 +672,7 @@ dialog {
     height: 100%;
   }
   .thumbnail-img:hover {
-    outline: 0.125rem solid hsl(26, 100%, 55%);
-    border-radius: 0.5rem;
+    opacity: 75%;
   }
   .thumbnail-row {
     display: flex;

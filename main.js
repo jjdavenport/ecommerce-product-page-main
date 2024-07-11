@@ -78,11 +78,10 @@ function lightboxCloseBtn() {
 
 function lightboxBtn() {
   const lightbox = document.getElementById("lightbox");
-  if (!lightbox && window.innerWidth >= 720) {
+  if (!lightbox && window.innerWidth >= 700 && window.innerHeight >= 460) {
     const createOverlay = document.createElement("div");
     createOverlay.id = "lightbox-overlay";
     document.body.appendChild(createOverlay);
-
     const createDialog = document.createElement("dialog");
     document.body.appendChild(createDialog);
     createDialog.className = "lightbox-active";
@@ -152,7 +151,6 @@ function lightboxBtn() {
           />
         </button>
       </div>`;
-
     lightboxCloseBtn();
     lightboxThumbnail();
     document.body.classList.add("no-scroll");
@@ -343,7 +341,7 @@ function itemBasket(addQnt) {
   const price = 125.0;
   const totalPrice = price * addQnt;
   const basketId = "basket";
-  const mobile = window.innerWidth < 845;
+  const mobile = window.innerWidth < 700;
   const checkWindow = document.querySelector(mobile ? ".mobile" : ".right-nav");
   let basket = document.getElementById(basketId);
   if (!basket) {
@@ -351,7 +349,6 @@ function itemBasket(addQnt) {
     basket.id = basketId;
     basket.className = "item-basket";
   }
-
   if (basket.parentElement !== checkWindow) {
     checkWindow.appendChild(basket);
   }
@@ -382,7 +379,7 @@ function updateItemBasket(addQnt) {
 
 function emptyBasket() {
   const basketId = "basket";
-  const mobile = window.innerWidth < 845;
+  const mobile = window.innerWidth < 700;
   const checkWindow = document.querySelector(mobile ? ".mobile" : ".right-nav");
   let basket = document.getElementById(basketId);
   if (!basket) {
@@ -427,14 +424,16 @@ function deleteEmptyBasket() {
 }
 
 function mobileDesktop() {
-  const windowSize = window.innerWidth;
+  const windowWidth = window.innerWidth;
+  const windowHeight = window.innerHeight;
   const main = document.querySelector("main");
   const existingDesktopNav = document.querySelector(".desktop-nav");
   const existingMobileNav = document.getElementById("mobile-nav");
   const existingDesktopLightbox = document.querySelector(".desktop");
   const existingMobileLightbox = document.querySelector(".mobile");
   const lightbox = document.getElementById("lightbox");
-  if (windowSize >= 845) {
+
+  if (windowWidth >= 700 && windowHeight >= 460) {
     if (existingMobileNav) {
       existingMobileNav.remove();
     }
@@ -471,6 +470,16 @@ function mobileDesktop() {
       main.insertBefore(addMobile, main.children[1]);
     }
   }
+  if (windowHeight < 460) {
+    if (lightbox) {
+      lightbox.remove();
+    }
+    const lightboxOverlay = document.getElementById("lightbox-overlay");
+    if (lightboxOverlay) {
+      lightboxOverlay.remove();
+    }
+    document.body.classList.remove("no-scroll");
+  }
 }
 
 window.addEventListener("resize", mobileDesktop);
@@ -501,7 +510,6 @@ function closeMenuClick() {
     mobileMenu.classList.remove("nav-active");
     document.body.classList.remove("no-scroll");
   }
-
   const overlay = document.getElementById("overlay");
   if (overlay) {
     overlay.remove();
@@ -512,8 +520,11 @@ window.addEventListener("resize", () => {
   const mobileMenu = document.getElementById("nav");
   const removeOverlay = document.getElementById("overlay");
   const lightboxOverlay = document.getElementById("lightbox-overlay");
+  const lightbox = document.getElementById("lightbox");
   const windowSize = window.innerWidth;
-  if (windowSize >= 845) {
+  const windowHeight = window.innerHeight;
+
+  if (windowSize >= 700) {
     if (mobileMenu) {
       mobileMenu.classList.remove("nav-active");
     }
@@ -521,7 +532,18 @@ window.addEventListener("resize", () => {
       removeOverlay.remove();
     }
   } else {
-    lightboxOverlay.remove();
+    if (lightboxOverlay) {
+      lightboxOverlay.remove();
+    }
+  }
+  if (windowHeight < 460) {
+    if (lightbox) {
+      lightbox.remove();
+    }
+    if (lightboxOverlay) {
+      lightboxOverlay.remove();
+    }
+    document.body.classList.remove("no-scroll");
   }
 });
 
